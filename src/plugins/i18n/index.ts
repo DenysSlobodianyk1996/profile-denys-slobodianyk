@@ -1,12 +1,10 @@
 import { createI18n } from 'vue-i18n'
+import en from './en'
+import ua from './ua'
 
 const messages = {
-  en: {
-    name: 'Denys Slobodianyk',
-  },
-  ua: {
-    name: 'Денис Слободяник',
-  },
+  en,
+  ua,
 }
 
 export default createI18n({

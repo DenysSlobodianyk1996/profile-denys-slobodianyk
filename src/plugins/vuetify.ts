@@ -3,15 +3,21 @@
  *
  * Framework documentation: https://vuetifyjs.com
  */
-
 import { createVuetify } from 'vuetify'
+import { THEME_KEY } from '@/static'
+
 import '@mdi/font/css/materialdesignicons.css'
 import '../styles/layers.css'
 import 'vuetify/styles'
 
+function getTheme () {
+  const theme = localStorage.getItem(THEME_KEY) ?? 'system'
+  return theme
+}
+
 export default createVuetify({
   theme: {
-    defaultTheme: 'system',
+    defaultTheme: getTheme(),
     utilities: false,
   },
   display: {
