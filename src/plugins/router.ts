@@ -4,7 +4,7 @@ import Skills from '@/pages/Skills.vue'
 import WorkExperience from '@/pages/WorkExperience.vue'
 
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/',
