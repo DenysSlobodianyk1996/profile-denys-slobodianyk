@@ -33,7 +33,7 @@ jobs:
 
   deploy:
     needs: build
-    runs-on: ubuntu-lates
+    runs-on: ubuntu-latest
 
     steps:
       - name: Deploy to Pages
