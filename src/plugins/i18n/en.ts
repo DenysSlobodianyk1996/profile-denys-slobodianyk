@@ -10,4 +10,8 @@ export default {
   personalInfo: 'Personal Info',
   skills: 'Skills',
   workExperience: 'Work Experience',
+  subject: 'Subject',
+  body: 'Body',
+  sendEmail: 'Send Email',
+  close: 'Close',
 }

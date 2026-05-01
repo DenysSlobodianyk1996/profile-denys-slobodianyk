@@ -29,7 +29,7 @@
   const { t } = useI18n()
 
   const cardTitle = computed(() => `${t('createdWith')}:`)
-  const libsList = ['vue', 'vuetify', 'vue-i18n', 'vue-router']
+  const libsList = ['vue', 'vuetify', 'vue-i18n', 'vue-router', 'vee-validate']
 </script>
 
 <style lang="scss" scoped>
