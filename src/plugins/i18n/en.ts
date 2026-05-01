@@ -6,7 +6,7 @@ export default {
     language: 'Change language',
     theme: 'Change theme',
   },
-  createdWithVue: 'Created with Vue',
+  createdWith: 'Created with',
   personalInfo: 'Personal Info',
   skills: 'Skills',
   workExperience: 'Work Experience',

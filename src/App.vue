@@ -13,9 +13,9 @@
   import { useTheme } from 'vuetify'
 
   import Footer from '@/layout/Footer.vue'
-  import Header from '@/layout/Header.vue'
+  import Header from '@/layout/header'
   import Main from '@/layout/Main.vue'
-  import Navigation from '@/layout/Navigation.vue'
+  import Navigation from '@/layout/navigation'
   import { LANGUAGE_KEY, THEME_KEY } from '@/static'
 
   const theme = useTheme()

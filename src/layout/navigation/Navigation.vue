@@ -10,12 +10,17 @@
           :to="item.url"
         />
       </template>
+
+      <v-divider />
+
+      <InfoAction />
     </v-list>
   </v-navigation-drawer>
 </template>
 
 <script setup lang="ts">
   import { useI18n } from 'vue-i18n'
+  import InfoAction from './InfoAction.vue'
 
   const { t } = useI18n()
 
