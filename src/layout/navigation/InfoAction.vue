@@ -8,7 +8,9 @@
       />
     </template>
 
-    <v-card class="flex flex-row gap-2 items-center" :title="cardTitle">
+    <v-card class="flex flex-row flex-wrap p-2 gap-2 items-center">
+      <p>{{ cardTitle }}</p>
+
       <v-chip
         v-for="item in libsList"
         :key="item"
