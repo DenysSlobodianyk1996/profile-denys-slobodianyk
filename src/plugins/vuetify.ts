@@ -10,14 +10,14 @@ import '@mdi/font/css/materialdesignicons.css'
 import '../styles/layers.css'
 import 'vuetify/styles'
 
-function getTheme () {
+function getStorageTheme (): string {
   const theme = localStorage.getItem(THEME_KEY) ?? 'system'
   return theme
 }
 
 export default createVuetify({
   theme: {
-    defaultTheme: getTheme(),
+    defaultTheme: getStorageTheme(),
     utilities: false,
   },
   display: {
