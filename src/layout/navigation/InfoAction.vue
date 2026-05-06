@@ -2,6 +2,7 @@
   <v-bottom-sheet>
     <template #activator="{props: activatorProps}">
       <v-list-item
+        v-tooltip:right="t('action.info')"
         label=""
         prepend-icon="mdi-information-outline"
         v-bind="activatorProps"

@@ -1,6 +1,6 @@
 <template>
   <v-btn
-    v-tooltip:left="t('change.language')"
+    v-tooltip:left="t('action.changeLanguage')"
     prepend-icon="mdi-web"
     variant="outlined"
     @click="changeLanguage"

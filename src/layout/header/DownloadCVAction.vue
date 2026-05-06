@@ -1,8 +1,9 @@
 <template>
   <v-btn
-    v-tooltip:left="t('downloadCV')"
+    v-tooltip:left="t('action.downloadCV')"
     color="text-green-700"
-    :href="googleDocCVPdf"
+    download
+    :href="cvPath"
     icon="mdi-cloud-download"
     target="_blank"
   />
@@ -12,8 +13,8 @@
   import { useI18n } from 'vue-i18n'
 
   const { t } = useI18n()
-  const docId = `1kpnnvF6vsTxSxWwujlzWYMC73TL_Qg_SAXrTNFmHO20`
-  const googleDocCVPdf = `https://docs.google.com/document/d/${docId}/export?format=pdf`
+
+  const cvPath = '/CV_Denys_S_Angular_React_Vue.pdf'
 </script>
 
 <style lang="scss" scoped>

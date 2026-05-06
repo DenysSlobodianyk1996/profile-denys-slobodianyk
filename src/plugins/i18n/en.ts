@@ -1,17 +1,20 @@
 export default {
   name: 'Denys Slobodianyk',
-  downloadCV: 'Download CV (.pdf)',
-  contactWith: 'Contact with',
-  change: {
-    language: 'Change language',
-    theme: 'Change theme',
+  action: {
+    downloadCV: 'Download CV (.pdf)',
+    contactWith: 'Contact with',
+    changeLanguage: 'Change language',
+    changeTheme: 'Change theme',
+    info: 'Info',
   },
   createdWith: 'Created with',
   personalInfo: 'Personal Info',
   skills: 'Skills',
   workExperience: 'Work Experience',
-  subject: 'Subject',
-  body: 'Body',
-  sendEmail: 'Send Email',
-  close: 'Close',
+  email: {
+    subject: 'Subject',
+    body: 'Body',
+    send: 'Send Email',
+    close: 'Close',
+  },
 }

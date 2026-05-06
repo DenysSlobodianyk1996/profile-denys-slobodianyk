@@ -1,7 +1,8 @@
 <template>
-  <v-btn
-    v-tooltip:left="t('change.theme')"
-    icon="mdi-theme-light-dark"
+  <v-list-item
+    v-tooltip:right="t('action.changeTheme')"
+    label=""
+    prepend-icon="mdi-theme-light-dark"
     @click="theme.cycle()"
   />
 </template>
