@@ -10,11 +10,13 @@
 </template>
 
 <script setup>
+  import { computed } from 'vue'
   import { useI18n } from 'vue-i18n'
 
   const { t } = useI18n()
 
-  const cvPath = '/CV_Denys_S_Angular_React_Vue.pdf'
+  const baseUrl = import.meta.env.BASE_URL
+  const cvPath = computed(() => `${baseUrl}/data/CV_Denys_S_Angular_React_Vue.pdf`)
 </script>
 
 <style lang="scss" scoped>
