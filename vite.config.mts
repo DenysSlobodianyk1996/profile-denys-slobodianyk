@@ -7,7 +7,7 @@ import Vuetify, { transformAssetUrls } from 'vite-plugin-vuetify'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: '/profile-denys-slobodianyk/',
+  base: '/profile-denys-slobodianyk',
   plugins: [
     tailwindcss(),
     Vue({

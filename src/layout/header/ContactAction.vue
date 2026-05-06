@@ -10,7 +10,7 @@
     </template>
 
     <template #default>
-      <v-card>
+      <v-card class="p-2">
         <v-card-text class="pb-0">
           <Form
             id="contact-form"
@@ -29,7 +29,7 @@
                 clearable
                 :error="!!errorMessage"
                 :error-messages="errorMessage"
-                :label="t('subject')"
+                :label="t('email.subject')"
                 :model-value="value"
                 variant="outlined"
                 @blur="handleBlur"
@@ -45,7 +45,7 @@
               <v-textarea
                 :error="!!errorMessage"
                 :error-messages="errorMessage"
-                :label="t('body')"
+                :label="t('email.body')"
                 :model-value="value"
                 variant="outlined"
                 @blur="handleBlur"
@@ -57,7 +57,7 @@
 
         <v-card-actions>
           <v-btn
-            :text="t('close')"
+            :text="t('email.close')"
             type="button"
             variant="outlined"
             @click="closeDialog"
@@ -66,7 +66,7 @@
           <v-btn
             color="primary"
             form="contact-form"
-            :text="t('sendEmail')"
+            :text="t('email.send')"
             type="submit"
             variant="elevated"
           />
@@ -89,7 +89,7 @@
 
   const dialog = ref(false)
 
-  const contactWithName = computed(() => `${t('contactWith')} ${t('name')}`)
+  const contactWithName = computed(() => `${t('action.contactWith')} ${t('name')}`)
 
   function onSubmitContact (values: any): void {
     const { subject, body } = values

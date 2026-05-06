@@ -4,7 +4,6 @@
     <ContactAction />
     <DownloadCVAction />
     <LanguageAction />
-    <ThemeAction />
   </v-app-bar>
 </template>
 
@@ -13,7 +12,6 @@
   import ContactAction from './ContactAction.vue'
   import DownloadCVAction from './DownloadCVAction.vue'
   import LanguageAction from './LanguageAction.vue'
-  import ThemeAction from './ThemeAction.vue'
 
   const { t } = useI18n()
 </script>

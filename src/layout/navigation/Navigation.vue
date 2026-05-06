@@ -1,5 +1,5 @@
 <template>
-  <v-navigation-drawer permanent rail>
+  <v-navigation-drawer app permanent rail>
     <v-list>
       <template v-for="item in navigagtionItems" :key="item.label">
         <v-list-item
@@ -11,9 +11,10 @@
         />
       </template>
 
-      <v-divider />
+      <v-divider class="my-1" />
 
       <InfoAction />
+      <ThemeAction />
     </v-list>
   </v-navigation-drawer>
 </template>
@@ -21,6 +22,7 @@
 <script setup lang="ts">
   import { useI18n } from 'vue-i18n'
   import InfoAction from './InfoAction.vue'
+  import ThemeAction from './ThemeAction.vue'
 
   const { t } = useI18n()
 

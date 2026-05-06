@@ -2,6 +2,7 @@
   <v-bottom-sheet>
     <template #activator="{props: activatorProps}">
       <v-list-item
+        v-tooltip:right="t('action.info')"
         label=""
         prepend-icon="mdi-information-outline"
         v-bind="activatorProps"
@@ -12,7 +13,7 @@
       <p>{{ cardTitle }}</p>
 
       <v-chip
-        v-for="item in libsList"
+        v-for="item in usedLibs"
         :key="item"
         color="primary"
         variant="flat"
@@ -25,13 +26,27 @@
 </template>
 
 <script setup>
-  import { computed } from 'vue'
+  import { storeToRefs } from 'pinia'
+  import { computed, onMounted } from 'vue'
   import { useI18n } from 'vue-i18n'
+  import { dataService } from '@/services'
+  import { useDataStore } from '@/stores'
 
   const { t } = useI18n()
 
+  const dataStore = useDataStore()
+
+  const { usedLibs } = storeToRefs(dataStore)
   const cardTitle = computed(() => `${t('createdWith')}:`)
-  const libsList = ['vue', 'vuetify', 'vue-i18n', 'vue-router', 'vee-validate']
+
+  async function loadUsedLibs () {
+    const usedLibs = await dataService.getUsedLibs()
+    dataStore.setUsedLibs(usedLibs)
+  }
+
+  onMounted(() => {
+    loadUsedLibs()
+  })
 </script>
 
 <style lang="scss" scoped>
