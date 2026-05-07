@@ -2,7 +2,7 @@
   <v-dialog v-model="dialog" max-width="500" persistent>
     <template #activator="{props: activatorPros}">
       <v-btn
-        v-tooltip:left="contactWithName"
+        v-tooltip:left="t('action.contactWithMe')"
         v-bind="activatorPros"
         color="text-blue-700"
         icon="mdi-email"
@@ -16,7 +16,7 @@
             id="contact-form"
             class="flex flex-col gap-4"
             :initial-values="{
-              subject: contactWithName
+              subject: t('action.contactWithMe')
             }"
             @submit="onSubmitContact"
           >
@@ -43,6 +43,7 @@
               :rules="{ required: true }"
             >
               <v-textarea
+                autofocus
                 :error="!!errorMessage"
                 :error-messages="errorMessage"
                 :label="t('email.body')"
@@ -80,7 +81,7 @@
 <script setup lang="ts">
   import { required } from '@vee-validate/rules'
   import { defineRule, Field, Form } from 'vee-validate'
-  import { computed, ref } from 'vue'
+  import { ref } from 'vue'
   import { useI18n } from 'vue-i18n'
 
   defineRule('required', required)
@@ -88,8 +89,6 @@
   const { t } = useI18n()
 
   const dialog = ref(false)
-
-  const contactWithName = computed(() => `${t('action.contactWith')} ${t('name')}`)
 
   function onSubmitContact (values: any): void {
     const { subject, body } = values

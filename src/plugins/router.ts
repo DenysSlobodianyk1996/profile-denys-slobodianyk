@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import PersonalInfo from '@/pages/PersonalInfo.vue'
+import PersonalInfo from '@/pages/personal-info'
 import Skills from '@/pages/Skills.vue'
 import WorkExperience from '@/pages/WorkExperience.vue'
 

@@ -2,7 +2,7 @@ export default {
   name: 'Denys Slobodianyk',
   action: {
     downloadCV: 'Download CV (.pdf)',
-    contactWith: 'Contact with',
+    contactWithMe: 'Contact with me',
     changeLanguage: 'Change language',
     changeTheme: 'Change theme',
     info: 'Info',
