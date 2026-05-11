@@ -1,5 +1,5 @@
 <template>
-  <h5>{{ detail.title }}</h5>
+  <h5 class="whitespace-nowrap">{{ detail.title }}</h5>
 
   <div>
     <template v-if="detail.href">

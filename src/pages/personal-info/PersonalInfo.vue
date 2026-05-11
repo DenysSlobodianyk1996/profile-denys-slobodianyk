@@ -10,10 +10,10 @@
     />
 
     <v-container fluid>
-      <div class="grid sm:grid-cols-[max-content_1fr] grid-cols-1fr gap-x-4 sm:gap-y-3 xs:[&>div:nth-child(2n):not(:last-child)]:mb-3">
+      <div class="grid sm:grid-cols-[max-content_1fr] grid-cols-1fr gap-x-2 sm:gap-y-4 xs:[&>div:nth-child(2n):not(:last-child)]:mb-4">
         <h3>{{ t('personalInfo.positions') }}</h3>
 
-        <div>
+        <div class="flex flex-col gap-1">
           <template v-for="detail in positionDetails" :key="detail.title">
             <div class="flex flex-row items-center gap-2">
               <PersonalInfoDetail :detail="detail" />

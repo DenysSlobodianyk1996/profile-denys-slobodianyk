@@ -1,13 +1,13 @@
 <template>
   <v-navigation-drawer app permanent rail>
     <v-list>
-      <template v-for="item in navigagtionItems" :key="item.label">
+      <template v-for="item in navigagtionItems" :key="item.title">
         <v-list-item
-          v-tooltip:right="t(item.label)"
+          v-tooltip:right="t(item.title)"
           label=""
           link
           :prepend-icon="item.icon"
-          :to="item.url"
+          :to="item.path"
         />
       </template>
 
@@ -21,28 +21,13 @@
 
 <script setup lang="ts">
   import { useI18n } from 'vue-i18n'
+  import { NAVIGATION_ITEMS } from '@/static'
   import InfoAction from './InfoAction.vue'
   import ThemeAction from './ThemeAction.vue'
 
   const { t } = useI18n()
 
-  const navigagtionItems: { label: string, url: string, icon: string } [] = [
-    {
-      label: 'personalInfo',
-      url: '/',
-      icon: 'mdi-account-tie',
-    },
-    {
-      label: 'skills',
-      url: '/skills',
-      icon: 'mdi-network-pos',
-    },
-    {
-      label: 'workExperience',
-      url: '/work-experience',
-      icon: 'mdi-account-group',
-    },
-  ]
+  const navigagtionItems = NAVIGATION_ITEMS
 </script>
 
 <style lang="scss" scoped>
