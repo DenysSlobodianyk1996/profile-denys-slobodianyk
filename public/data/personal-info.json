@@ -1,0 +1,48 @@
+{
+  "positionDetails": [
+    {
+      "title": "Angular 5-21",
+      "desciption": "Senior - 3500 (+- 500) USD"
+    },
+    {
+      "title": "React",
+      "desciption": "Middle - 2000 (+-500) USD"
+    },
+    {
+      "title": "Vue",
+      "desciption": "Junior / Pre Middle - 1500 (+-500) USD"
+    }
+  ],
+  "additionalDetails": [
+    {
+      "title": "Remote",
+      "desciption": "Based in Bila Tserkva, Kyiv region, Ukraine"
+    },
+    {
+      "title": "English",
+      "desciption": "B2 Upper Intermediate"
+    },
+    {
+      "title": "LinkedIn",
+      "href": "https://www.linkedin.com/in/denys-slobodianyk-928202162/"
+    },
+    {
+      "title": "Phone",
+      "desciption": "(099) 260 56 00",
+      "href": "https://t.me/denysslobodianyk"
+    },
+    {
+      "title": "Email",
+      "desciption": "denys.slobodianyk@gmail.com",
+      "href": "mailto:denys.slobodianyk@gmail.com?subject={subject}"
+    },
+    {
+      "title": "Education",
+      "desciption": "Master degree with honors. Vinnytsia National Technical University"
+    },
+    {
+      "title": "Private entrepreneur",
+      "desciption": "Monobank UAH / USD"
+    }
+  ]
+}

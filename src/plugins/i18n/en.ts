@@ -8,9 +8,16 @@ export default {
     info: 'Info',
   },
   createdWith: 'Created with',
-  personalInfo: 'Personal Info',
-  skills: 'Skills',
-  workExperience: 'Work Experience',
+  personalInfo: {
+    title: 'Personal Info',
+    positions: 'Positions',
+  },
+  skills: {
+    title: 'Skills',
+  },
+  workExperience: {
+    title: 'Work Experience',
+  },
   email: {
     subject: 'Subject',
     body: 'Body',

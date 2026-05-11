@@ -10,7 +10,7 @@ const router = createRouter({
       path: '/',
       name: 'personal-info',
       meta: {
-        title: 'personalInfo',
+        title: 'personalInfo.title',
       },
       component: PersonalInfo,
     },
@@ -18,7 +18,7 @@ const router = createRouter({
       path: '/skills',
       name: 'skills',
       meta: {
-        title: 'skills',
+        title: 'skills.title',
       },
       component: Skills,
     },
@@ -26,7 +26,7 @@ const router = createRouter({
       path: '/work-experience',
       name: 'work-experience',
       meta: {
-        title: 'workExperience',
+        title: 'workExperience.title',
       },
       component: WorkExperience,
     },

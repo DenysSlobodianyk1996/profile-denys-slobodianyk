@@ -3,3 +3,8 @@ export interface PersonalInfoDetails {
   desciption?: string
   href?: string // is used for type link
 }
+
+export interface PersonalInfo {
+  positionDetails: PersonalInfoDetails[]
+  additionalDetails: PersonalInfoDetails[]
+}
