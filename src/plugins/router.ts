@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import PersonalInfo from '@/pages/personal-info'
-import Skills from '@/pages/Skills.vue'
+import Skills from '@/pages/skills'
 import WorkExperience from '@/pages/WorkExperience.vue'
 import { NAVIGATION_ITEMS } from '@/static/navigation-items'
 

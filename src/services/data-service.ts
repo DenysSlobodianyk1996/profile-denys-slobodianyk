@@ -1,4 +1,5 @@
 import type { PersonalInfo } from '@/pages/personal-info/models'
+import type { Skills } from '@/pages/skills/models'
 import axios from 'axios'
 
 const dataApi = axios.create({
@@ -15,5 +16,8 @@ export const dataService = {
   },
   getPersonalInfo () {
     return dataApi.get<PersonalInfo>('/personal-info.json').then(response => response.data)
+  },
+  getSkills () {
+    return dataApi.get<Skills>('/skills.json').then(response => response.data)
   },
 }

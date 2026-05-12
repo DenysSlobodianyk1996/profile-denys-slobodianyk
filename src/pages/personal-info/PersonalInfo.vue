@@ -2,12 +2,13 @@
   <h2>{{ title }}</h2>
 
   <v-sheet class="flex md:flex-row flex-col gap-4">
-    <v-img
-      class="self-start mt-4"
-      rounded="xl"
-      :src="photoUrl"
-      width="150"
-    />
+    <v-sheet class="self-start mt-4 px-4">
+      <v-img
+        rounded="xl"
+        :src="photoUrl"
+        width="150"
+      />
+    </v-sheet>
 
     <v-container fluid>
       <div class="grid sm:grid-cols-[max-content_1fr] grid-cols-1fr gap-x-2 sm:gap-y-4 xs:[&>div:nth-child(2n):not(:last-child)]:mb-4">

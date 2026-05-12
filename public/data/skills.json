@@ -1,0 +1,85 @@
+{
+  "angular": {
+    "version": "5 - 21",
+    "yearsExperience": 8,
+    "skills": [
+      "RxJS",
+      "Signals",
+      "NgRx",
+      "PrimeNG",
+      "Angular Material",
+      "Kendo-UI",
+      "Angular Animation",
+      "HTML",
+      "CSS",
+      "SCSS",
+      "Bootstrap",
+      "Flex/Grid",
+      "JavaScript",
+      "TypeScript"
+    ],
+    "additionalInfo": "skills.angularMajorUpdates"
+  },
+  "vue": {
+    "version": "2 - 3",
+    "yearsExperience": 1,
+    "skills": [
+      "Base syntax",
+      "Pinia",
+      "Vue Router",
+      "Vee-validate",
+      "Axios",
+      "Vue-i18n",
+      "Vuetify.js"
+    ],
+    "additionalInfo": "skills.noCommertialExperience"
+  },
+  "react": {
+    "version": "16 - 17",
+    "yearsExperience": 2.5,
+    "skills": []
+  },
+  "scrum": {
+    "yearsExperience": 4,
+    "skills": [
+      "Agile (Scrum, Kanban)",
+      "Daily",
+      "Refinement",
+      "Retro",
+      "Sprint Planning moderation",
+      "OKR",
+      "KR champion",
+      "Estimations"
+    ]
+  },
+  "soft_skills": {
+    "skills": [
+      "Mentoring",
+      "Code reviewing",
+      "Supporting",
+      "Sociability",
+      "Readiness for learning",
+      "Responsibility"
+    ]
+  },
+  "workflow": {
+    "skills": [
+      "GIT - Bitbucket, Github, Gitlab",
+      "Trello",
+      "Jira",
+      "Tempo",
+      "Clockify",
+      "Miro",
+      "Slack",
+      "VS Code",
+      "Copilot",
+      "ChatGPT",
+      "Figma"
+    ]
+  },
+  "other_tech_skills": {
+    "skills": [
+      "Google Maps", "AgGrid", "PrimeFlex", "Tailwind", "Datadog"
+    ]
+  }
+}
