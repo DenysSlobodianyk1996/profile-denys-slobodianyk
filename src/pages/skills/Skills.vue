@@ -4,7 +4,7 @@
   <v-sheet class="flex flex-col gap-4">
     <v-tabs
       v-model="selectedTab"
-      class="mb-2 tabs-container"
+      class="tabs-container"
       color="primary"
       inset
     >
@@ -18,7 +18,7 @@
     <v-tabs-window v-model="selectedTab" class="w-full">
       <template v-for="(item, index) in skillTitles" :key="index">
         <v-tabs-window-item :value="item.key">
-          <SkillView :skill="skills[item.key]" />
+          <SkillView :skill="skills[item.key]" :title="item.title" />
         </v-tabs-window-item>
       </template>
     </v-tabs-window>

@@ -1,21 +1,35 @@
 <template>
-  <v-text-field
-    v-model.lazy="search"
-    class="mb-2"
-    clearable
-    :label="t('search')"
-    :max-width="contentMaxWidth"
-  />
+  <v-sheet class="flex flex-col gap-4 max-w-200">
+    <div>
+      <p v-html="skillTitle" />
 
-  <v-chip-group :class="tailwindMaxWidth" column>
-    <v-chip
-      v-for="(value, index) in filteredSkills"
-      :key="index"
-    >
-      {{ value }}
-    </v-chip>
-  </v-chip-group>
+      <template v-if="!!skill.additionalInfo">
+        <p>{{ t(skill.additionalInfo) }}</p>
+      </template>
+    </div>
 
+    <div>
+      <v-text-field
+        v-model.lazy="search"
+        class="my-2"
+        clearable
+        hide-details
+        :label="t('search')"
+        max-width="200"
+        variant="outlined"
+      />
+
+      <v-chip-group column>
+        <v-chip
+          v-for="(value, index) in filteredSkills"
+          :key="index"
+        >
+          {{ value }}
+        </v-chip>
+      </v-chip-group>
+    </div>
+
+  </v-sheet>
 </template>
 
 <script setup lang="ts">
@@ -25,12 +39,16 @@
 
   const { t } = useI18n()
   const search = ref('')
-  const contentMaxWidth = ref(200)
   const props = defineProps<{
+    title: string
     skill: Skill
   }>()
 
-  const tailwindMaxWidth = computed(() => 'max-w-' + contentMaxWidth.value)
+  const skillTitle = computed(() => [
+    `${props.title}`,
+    props.skill.yearsExperience ? `${props.skill.yearsExperience} year(-s)` : null,
+    props.skill.version ? `${props.skill.version} version(-s)` : null,
+  ].filter(Boolean).join('<br/>'))
   const filteredSkills = computed(() => {
     const currentSearch = search.value?.toLocaleLowerCase() ?? ''
     return props?.skill?.skills?.filter((item: string) => item.toLocaleLowerCase().includes(currentSearch))
