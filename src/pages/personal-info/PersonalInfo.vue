@@ -37,7 +37,7 @@
   import { useRoute } from 'vue-router'
   import { dataService } from '@/services'
   import { useDataStore } from '@/stores'
-  import PersonalInfoDetail from './PersonalInfoDetail.vue'
+  import PersonalInfoDetail from './components'
 
   const baseUrl = import.meta.env.BASE_URL
   const route = useRoute()

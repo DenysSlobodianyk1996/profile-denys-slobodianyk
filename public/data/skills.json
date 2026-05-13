@@ -37,7 +37,17 @@
   "react": {
     "version": "16 - 17",
     "yearsExperience": 2.5,
-    "skills": []
+    "skills": [
+      "Redux",
+      "Zustand",
+      "React with typescript",
+      "Hooks",
+      "Functional / Class components",
+      "Material UI",
+      "Styled Components",
+      "Chakra UI",
+      "Formik"
+    ]
   },
   "scrum": {
     "yearsExperience": 4,

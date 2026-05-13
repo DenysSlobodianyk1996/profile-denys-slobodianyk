@@ -15,7 +15,7 @@
 </template>
 
 <script setup lang="ts">
-  import type { PersonalInfoDetails } from './models'
+  import type { PersonalInfoDetails } from '../models'
 
   defineProps<{ detail: PersonalInfoDetails }>()
 </script>

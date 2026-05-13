@@ -12,14 +12,16 @@
     <v-card class="flex flex-row flex-wrap p-2 gap-2 items-center">
       <p>{{ cardTitle }}</p>
 
-      <v-chip
-        v-for="item in usedLibs"
-        :key="item"
-        color="primary"
-        variant="flat"
-      >
-        {{ item }}
-      </v-chip>
+      <v-chip-group column>
+        <v-chip
+          v-for="(item, index) in usedLibs"
+          :key="index"
+          color="primary"
+          variant="flat"
+        >
+          {{ item }}
+        </v-chip>
+      </v-chip-group>
     </v-card>
   </v-bottom-sheet>
 
