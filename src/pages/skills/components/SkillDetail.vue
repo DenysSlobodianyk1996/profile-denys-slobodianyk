@@ -1,34 +1,32 @@
 <template>
   <v-sheet class="flex flex-col gap-4 max-w-200">
-    <div>
-      <p v-html="skillTitle" />
+    <v-sheet>
+      <p><b v-html="skillTitle" /></p>
 
       <template v-if="!!skill.additionalInfo">
         <p>{{ t(skill.additionalInfo) }}</p>
       </template>
-    </div>
+    </v-sheet>
 
-    <div>
-      <v-text-field
-        v-model.lazy="search"
-        class="mb-2 search-field"
-        clearable
-        density="compact"
-        hide-details
-        :label="t('search')"
-        max-width="200"
-        variant="outlined"
-      />
+    <v-text-field
+      v-model.lazy="search"
+      class="mb-2 search-field"
+      clearable
+      density="compact"
+      hide-details
+      :label="t('search')"
+      max-width="200"
+      variant="outlined"
+    />
 
-      <v-chip-group column>
-        <v-chip
-          v-for="(value, index) in filteredSkills"
-          :key="index"
-        >
-          {{ value }}
-        </v-chip>
-      </v-chip-group>
-    </div>
+    <v-chip-group column>
+      <v-chip
+        v-for="(value, index) in filteredSkills"
+        :key="index"
+      >
+        {{ value }}
+      </v-chip>
+    </v-chip-group>
 
   </v-sheet>
 </template>

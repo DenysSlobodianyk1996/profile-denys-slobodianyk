@@ -1,6 +1,4 @@
 <template>
-  <h2>{{ title }}</h2>
-
   <v-sheet class="flex flex-col gap-4">
     <v-tabs
       v-model="selectedTab"
@@ -29,20 +27,11 @@
 <script setup lang="ts">
   import { storeToRefs } from 'pinia'
   import { computed, onMounted, ref, watch } from 'vue'
-  import { useI18n } from 'vue-i18n'
-  import { useRoute } from 'vue-router'
   import { dataService } from '@/services'
   import { useDataStore } from '@/stores'
   import SkillDetail from './components'
 
-  const route = useRoute()
-  const { t } = useI18n()
   const dataStore = useDataStore()
-
-  const title = computed(() => {
-    const metaTitle = route.meta.title as string
-    return t(metaTitle)
-  })
 
   const selectedTab = ref<string>('')
 

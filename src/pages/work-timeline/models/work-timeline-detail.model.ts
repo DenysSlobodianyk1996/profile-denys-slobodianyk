@@ -1,10 +1,10 @@
-interface CompanyModel {
+export interface CompanyModel {
   name: string
   timeline: string
   position: string
 }
 
-interface ProjectModel {
+export interface ProjectModel {
   name: string
   timeline: string
   description: string

@@ -1,10 +1,65 @@
 [
   {
     "company": {
-      "name": "“The Frontend Company”, USA. (“AVA.codes” Kyiv)",
+      "name": "The Frontend Company, USA. (AVA.codes, Kyiv)",
       "timeline": "6 years (May 2020 - April 2026)",
       "position": "Senior Web developer (Angular 8-21, React.js)"
     },
-    "projects": []
+    "projects": [
+      {
+        "name": "Aifora",
+        "timeline": "2.5 years",
+        "description": "Forecast system for shops",
+        "skills": ["Angular 10-21", "AgGrid", "SASS", "Angular Material", "PrimeNg", "Chart.js", "Stepper forms", "Migrated Angular from v9 to v21", "Mentoring", "Agile", "OKR", "Organize Release process"]
+      },
+      {
+        "name": "Skill Director",
+        "timeline": "2.5 years",
+        "description": "Managing work process and evaluation employees in companies, creating development plans for them. Lead positions on the project - management and development.",
+        "skills": ["Angular 8 - 16", "SCSS", "ngRx", "Kendo UI", "RxJS", "Error handler", "Notifications", "JWT Auth", "Api mapper", "Web Speech API", "Migrated Angular from v8 to v16"]
+      }
+    ]
+  },
+  {
+    "company": {
+      "name": "Global Teams, Tel Aviv. (Quant Development, Kyiv)",
+      "timeline": "4 months (Nov 2019 - Mar 2020)",
+      "position": "Junior Web developer (Angular 8)"
+    },
+    "projects": [
+      {
+        "name": "Sachal",
+        "timeline": "4 months",
+        "description": "Insurance website",
+        "skills": ["Angular 8", "Multi step forms", "Angular animations", "SCSS", "Flexbox", "rxjs", "D3.js", "Digital signature", "Line slider", "File upload", "Hebrew language"]
+      }
+    ]
+  },
+  {
+    "company": {
+      "name": "SkySoft.tech, Vinnytsia",
+      "timeline": "1 year 10 months (Jan 2018 - Nov 2019)",
+      "position": "Junior Web developer (Angular 5-8, .Net)"
+    },
+    "projects": [
+      {
+
+      }
+    ]
+  },
+  {
+    "company": {
+      "name": "InnoVinnprom, Vinnytsia",
+      "timeline": "5 months (Aug 2017 - Dec 2017)",
+      "position": "Trainee .NET, ASP.NET Core 2.0"
+    },
+    "projects": [
+      {
+        "name": "Internal",
+        "timeline": "5 months",
+        "description": "SQLite Database editor",
+        "skills": ["ASP.NET", "SQLite", "Windows Forms"]
+      }
+    ]
   }
 ]

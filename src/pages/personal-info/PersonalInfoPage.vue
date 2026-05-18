@@ -1,13 +1,13 @@
 <template>
-  <h2>{{ title }}</h2>
-
   <v-sheet class="flex md:flex-row flex-col gap-4">
-    <v-sheet class="self-start mt-4 px-4">
+    <v-sheet class="self-start mt-4 px-4 flex flex-col gap-2 text-center">
       <v-img
         rounded="xl"
         :src="photoUrl"
         width="150"
       />
+
+      <p><strong>{{ t('name') }}</strong></p>
     </v-sheet>
 
     <v-container fluid>
@@ -34,20 +34,13 @@
   import { storeToRefs } from 'pinia'
   import { computed, onMounted } from 'vue'
   import { useI18n } from 'vue-i18n'
-  import { useRoute } from 'vue-router'
   import { dataService } from '@/services'
   import { useDataStore } from '@/stores'
   import PersonalInfoDetail from './components'
 
   const baseUrl = import.meta.env.BASE_URL
-  const route = useRoute()
   const { t } = useI18n()
   const dataStore = useDataStore()
-
-  const title = computed(() => {
-    const metaTitle = route.meta.title as string
-    return t(metaTitle)
-  })
 
   const photoUrl = computed(() => `${baseUrl}/data/foto.png`)
 

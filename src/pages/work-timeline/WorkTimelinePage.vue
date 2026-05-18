@@ -1,7 +1,5 @@
 <template>
-  <h2>{{ title }}</h2>
-
-  <v-timeline class="work-timeline justify-start" direction="vertical" side="end">
+  <v-timeline class="work-timeline" :density="timelineDensity" direction="vertical" side="end">
     <template v-for="workTimelineDetail in workTimelineDetails" :key="workTimelineDetail.company.name">
       <WorkTimelineDetail :work-timeline-detail="workTimelineDetail" />
     </template>
@@ -11,20 +9,15 @@
 <script setup lang="ts">
   import { storeToRefs } from 'pinia'
   import { computed, onMounted } from 'vue'
-  import { useI18n } from 'vue-i18n'
-  import { useRoute } from 'vue-router'
+  import { useDisplay } from 'vuetify'
   import { dataService } from '@/services'
   import { useDataStore } from '@/stores'
   import WorkTimelineDetail from './components'
 
-  const route = useRoute()
-  const { t } = useI18n()
   const dataStore = useDataStore()
+  const { smAndDown } = useDisplay()
 
-  const title = computed(() => {
-    const metaTitle = route.meta.title as string
-    return t(metaTitle)
-  })
+  const timelineDensity = computed(() => smAndDown.value ? 'compact' : 'comfortable')
 
   // WorkTimelineDetails logic
   const { workTimelineDetails } = storeToRefs(dataStore)
@@ -43,9 +36,7 @@
 </script>
 
 <style lang="scss" scoped>
-  // .work-timeline {
-  //   :deep(.v-timeline-item__body) {
-  //     width: 100%;
-  //   }
-  // }
+  .work-timeline {
+    grid-template-columns: auto min-content 1fr;
+  }
 </style>
