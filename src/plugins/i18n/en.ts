@@ -17,8 +17,9 @@ export default {
     noCommertialExperience: 'No commertial experience',
     angularMajorUpdates: 'Angular Major updates - Update for projects Angular 8 to 16; 9 to 21 with continuous support.\nMigration from Angular Material to PrimeNg components (replacement).',
   },
-  workExperience: {
-    title: 'Work Experience',
+  workTimeline: {
+    title: 'Work Timeline',
+    projects: 'Projects',
   },
   email: {
     subject: 'Subject',

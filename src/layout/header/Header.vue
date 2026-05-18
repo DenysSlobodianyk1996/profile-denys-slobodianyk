@@ -1,5 +1,5 @@
 <template>
-  <v-app-bar app>
+  <v-app-bar app class="pe-2">
     <v-app-bar-title :text="t('name')" />
     <ContactAction />
     <DownloadCVAction />

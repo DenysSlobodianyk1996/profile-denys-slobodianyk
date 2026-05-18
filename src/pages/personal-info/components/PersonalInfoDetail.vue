@@ -15,9 +15,9 @@
 </template>
 
 <script setup lang="ts">
-  import type { PersonalInfoDetails } from '../models'
+  import type { PersonalInfoDetailModel } from '../models'
 
-  defineProps<{ detail: PersonalInfoDetails }>()
+  defineProps<{ detail: PersonalInfoDetailModel }>()
 </script>
 
 <style lang="scss" scoped>

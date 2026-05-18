@@ -42,16 +42,17 @@
   const baseUrl = import.meta.env.BASE_URL
   const route = useRoute()
   const { t } = useI18n()
-
   const dataStore = useDataStore()
-  const { personalInfo } = storeToRefs(dataStore)
 
   const title = computed(() => {
     const metaTitle = route.meta.title as string
     return t(metaTitle)
   })
+
   const photoUrl = computed(() => `${baseUrl}/data/foto.png`)
 
+  // Personal Info logic
+  const { personalInfo } = storeToRefs(dataStore)
   const positionDetails = computed(() => personalInfo.value.positionDetails)
   const additionalDetails = computed(() => personalInfo.value.additionalDetails?.map(item => {
     if (item.title === 'Email') {

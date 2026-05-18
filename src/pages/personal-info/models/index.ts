@@ -1,1 +1,1 @@
-export * from './personal-info-details.model'
+export * from './personal-info-detail.model'

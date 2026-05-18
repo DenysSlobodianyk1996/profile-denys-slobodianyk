@@ -18,7 +18,7 @@
     <v-tabs-window v-model="selectedTab" class="w-full">
       <template v-for="(item, index) in skillTitles" :key="index">
         <v-tabs-window-item :value="item.key">
-          <SkillView :skill="skills[item.key]" :title="item.title" />
+          <SkillDetail :skill="skills![item.key]" :title="item.title" />
         </v-tabs-window-item>
       </template>
     </v-tabs-window>
@@ -31,30 +31,31 @@
   import { computed, onMounted, ref, watch } from 'vue'
   import { useI18n } from 'vue-i18n'
   import { useRoute } from 'vue-router'
-
   import { dataService } from '@/services'
   import { useDataStore } from '@/stores'
-
-  import SkillView from './components'
+  import SkillDetail from './components'
 
   const route = useRoute()
   const { t } = useI18n()
   const dataStore = useDataStore()
-  const { skills } = storeToRefs(dataStore)
 
-  const selectedTab = ref<string>('')
   const title = computed(() => {
     const metaTitle = route.meta.title as string
     return t(metaTitle)
   })
-  // Skills
-  const skillTitles = computed(() => Object.keys(skills.value).map(item => {
+
+  const selectedTab = ref<string>('')
+
+  // Skills logic
+  const { skills } = storeToRefs(dataStore)
+  const skillTitles = computed(() => Object.keys(skills.value ?? {}).map(item => {
     return {
       key: item,
       title: item.split('_').map(text => `${text.charAt(0).toUpperCase()}${text.slice(1)}`).join(' '),
     }
   }))
 
+  // setup fist tab selected based on skills list
   watch(
     skillTitles,
     newSkillTitles => {
@@ -63,7 +64,7 @@
   )
 
   async function loadSkills () {
-    if (Object.keys(skills.value).length > 0) {
+    if (Object.keys(skills.value ?? {}).length > 0) {
       // Data already loaded, no need to fetch again
       return
     }
@@ -74,7 +75,6 @@
   onMounted(() => {
     loadSkills()
   })
-
 </script>
 
 <style lang="scss" scoped>

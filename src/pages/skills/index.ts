@@ -1,1 +1,1 @@
-export { default } from './Skills.vue'
+export { default } from './SkillPage.vue'

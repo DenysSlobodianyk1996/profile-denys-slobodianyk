@@ -25,12 +25,12 @@
     "yearsExperience": 1,
     "skills": [
       "Base syntax",
-      "Pinia",
-      "Vue Router",
-      "Vee-validate",
-      "Axios",
-      "Vue-i18n",
-      "Vuetify.js"
+      "pinia",
+      "vue-router",
+      "vee-validate",
+      "axios",
+      "vue-i18n",
+      "vuetify.js"
     ],
     "additionalInfo": "skills.noCommertialExperience"
   },
@@ -50,7 +50,6 @@
     ]
   },
   "scrum": {
-    "yearsExperience": 4,
     "skills": [
       "Agile (Scrum, Kanban)",
       "Daily",

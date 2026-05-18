@@ -1,12 +1,12 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import PersonalInfo from '@/pages/personal-info'
-import Skills from '@/pages/skills'
-import WorkExperience from '@/pages/WorkExperience.vue'
+import PersonalInfoPage from '@/pages/personal-info'
+import SkillsPage from '@/pages/skills'
+import WorkTimelinePage from '@/pages/work-timeline'
 import { NAVIGATION_ITEMS } from '@/static/navigation-items'
 
 const PersonalInfoNavigationItem = NAVIGATION_ITEMS.find(({ id }) => id === 'personal-info')!
 const SkillsNavigationItem = NAVIGATION_ITEMS.find(({ id }) => id === 'skills')!
-const WorkExperienceNavigationItem = NAVIGATION_ITEMS.find(({ id }) => id === 'work-experience')!
+const WorkTimelineNavigationItem = NAVIGATION_ITEMS.find(({ id }) => id === 'work-timeline')!
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -17,7 +17,7 @@ const router = createRouter({
       meta: {
         title: PersonalInfoNavigationItem.title,
       },
-      component: PersonalInfo,
+      component: PersonalInfoPage,
     },
     {
       path: SkillsNavigationItem.path,
@@ -25,15 +25,15 @@ const router = createRouter({
       meta: {
         title: SkillsNavigationItem.title,
       },
-      component: Skills,
+      component: SkillsPage,
     },
     {
-      path: WorkExperienceNavigationItem.path,
-      name: WorkExperienceNavigationItem.id,
+      path: WorkTimelineNavigationItem.path,
+      name: WorkTimelineNavigationItem.id,
       meta: {
-        title: WorkExperienceNavigationItem.title,
+        title: WorkTimelineNavigationItem.title,
       },
-      component: WorkExperience,
+      component: WorkTimelinePage,
     },
     {
       path: '/:pathMatch(.*)*',

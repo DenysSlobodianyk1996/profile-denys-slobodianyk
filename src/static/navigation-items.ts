@@ -1,6 +1,6 @@
-import type { NavigationItem } from '@/models'
+import type { NavigationItemModel } from '@/models'
 
-export const NAVIGATION_ITEMS: NavigationItem[] = [
+export const NAVIGATION_ITEMS: NavigationItemModel[] = [
   {
     id: 'personal-info',
     title: 'personalInfo.title',
@@ -14,9 +14,9 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
     icon: 'mdi-network-pos',
   },
   {
-    id: 'work-experience',
-    title: 'workExperience.title',
-    path: '/work-experience',
+    id: 'work-timeline',
+    title: 'workTimeline.title',
+    path: '/work-timeline',
     icon: 'mdi-account-group',
   },
 ]

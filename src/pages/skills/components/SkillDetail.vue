@@ -11,8 +11,9 @@
     <div>
       <v-text-field
         v-model.lazy="search"
-        class="my-2"
+        class="mb-2 search-field"
         clearable
+        density="compact"
         hide-details
         :label="t('search')"
         max-width="200"
@@ -33,7 +34,7 @@
 </template>
 
 <script setup lang="ts">
-  import type { Skill } from '../models'
+  import type { SkillDetailModel } from '../models'
   import { computed, ref } from 'vue'
   import { useI18n } from 'vue-i18n'
 
@@ -41,7 +42,7 @@
   const search = ref('')
   const props = defineProps<{
     title: string
-    skill: Skill
+    skill: SkillDetailModel
   }>()
 
   const skillTitle = computed(() => [
@@ -56,5 +57,4 @@
 </script>
 
 <style lang="scss" scoped>
-
 </style>

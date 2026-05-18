@@ -1,1 +1,1 @@
-export { default } from './PersonalInfo.vue'
+export { default } from './PersonalInfoPage.vue'
