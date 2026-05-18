@@ -18,7 +18,7 @@
     <v-tabs-window v-model="selectedTab" class="w-full">
       <template v-for="(item, index) in skillTitles" :key="index">
         <v-tabs-window-item :value="item.key">
-          <SkillDetail :skill="skills![item.key]" :title="item.title" />
+          <SkillDetail :skill="skills[item.key]" :title="item.title" />
         </v-tabs-window-item>
       </template>
     </v-tabs-window>
@@ -48,7 +48,7 @@
 
   // Skills logic
   const { skills } = storeToRefs(dataStore)
-  const skillTitles = computed(() => Object.keys(skills.value ?? {}).map(item => {
+  const skillTitles = computed(() => Object.keys(skills.value).map(item => {
     return {
       key: item,
       title: item.split('_').map(text => `${text.charAt(0).toUpperCase()}${text.slice(1)}`).join(' '),
@@ -64,7 +64,7 @@
   )
 
   async function loadSkills () {
-    if (Object.keys(skills.value ?? {}).length > 0) {
+    if (Object.keys(skills.value).length > 0) {
       // Data already loaded, no need to fetch again
       return
     }

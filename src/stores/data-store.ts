@@ -6,13 +6,16 @@ import { defineStore } from 'pinia'
 export const useDataStore = defineStore('data', {
   state: () => (<{
     usedLibs: string[]
-    personalInfo: PersonalInfoModel | null
-    skills: SkillsModel | null
+    personalInfo: PersonalInfoModel
+    skills: SkillsModel
     workTimelineDetails: WorkTimelineDetailModel[]
   }>{
     usedLibs: [],
-    personalInfo: null,
-    skills: null,
+    personalInfo: {
+      positionDetails: [],
+      additionalDetails: [],
+    },
+    skills: {},
     workTimelineDetails: [],
   }),
   actions: {

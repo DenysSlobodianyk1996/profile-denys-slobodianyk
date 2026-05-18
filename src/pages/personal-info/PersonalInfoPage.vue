@@ -65,7 +65,7 @@
   }))
 
   async function loadPersonalInfo () {
-    if (positionDetails.value.length > 0 && additionalDetails.value?.length > 0) {
+    if (positionDetails.value.length > 0 || additionalDetails.value?.length > 0) {
       // Data already loaded, no need to fetch again
       return
     }
