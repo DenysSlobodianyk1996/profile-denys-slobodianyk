@@ -19,6 +19,7 @@
     "@fontsource/roboto-mono": "^5.2.8",
     "@mdi/font": "7.4.47",
     "@vee-validate/rules": "^4.15.1",
+    "@vueuse/head": "^2.0.0",
     "axios": "^1.16.0",
     "pinia": "^3.0.4",
     "vee-validate": "^4.15.1",

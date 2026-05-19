@@ -2,7 +2,7 @@
   <v-sheet max-width="250">
     <h4>{{ company.name }}</h4>
     <hr>
-    <p>{{ company.position }}</p>
+    <p class="whitespace-pre-line">{{ company.position }}</p>
     <small><em>{{ company.timeline }}</em></small>
   </v-sheet>
 </template>

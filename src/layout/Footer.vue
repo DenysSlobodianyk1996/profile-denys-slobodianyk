@@ -1,6 +1,6 @@
 <template>
   <v-footer app height="60px">
-    <p class="mx-auto">&copy;{{ t('name') }}&nbsp;-&nbsp;{{ year }}</p>
+    <p class="mx-auto">&copy;&nbsp;{{ t('name') }}&nbsp;-&nbsp;{{ year }}</p>
   </v-footer>
 </template>
 

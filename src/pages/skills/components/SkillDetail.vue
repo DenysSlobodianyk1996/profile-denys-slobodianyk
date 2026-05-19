@@ -4,7 +4,7 @@
       <p><b v-html="skillTitle" /></p>
 
       <template v-if="!!skill.additionalInfo">
-        <p>{{ t(skill.additionalInfo) }}</p>
+        <p>{{ skill.additionalInfo }}</p>
       </template>
     </v-sheet>
 

@@ -18,21 +18,7 @@
       "JavaScript",
       "TypeScript"
     ],
-    "additionalInfo": "skills.angularMajorUpdates"
-  },
-  "vue": {
-    "version": "2 - 3",
-    "yearsExperience": 1,
-    "skills": [
-      "Base syntax",
-      "pinia",
-      "vue-router",
-      "vee-validate",
-      "axios",
-      "vue-i18n",
-      "vuetify.js"
-    ],
-    "additionalInfo": "skills.noCommertialExperience"
+    "additionalInfo": "Angular Major updates - Update for projects Angular 8 to 16; 9 to 21 with continuous support.\nMigration from Angular Material to PrimeNg components (replacement)."
   },
   "react": {
     "version": "16 - 17",
@@ -48,6 +34,20 @@
       "Chakra UI",
       "Formik"
     ]
+  },
+  "vue": {
+    "version": "2 - 3",
+    "yearsExperience": 1,
+    "skills": [
+      "Base syntax",
+      "pinia",
+      "vue-router",
+      "vee-validate",
+      "axios",
+      "vue-i18n",
+      "vuetify.js"
+    ],
+    "additionalInfo": "No commertial experience"
   },
   "scrum": {
     "skills": [

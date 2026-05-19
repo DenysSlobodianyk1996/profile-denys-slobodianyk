@@ -3,13 +3,13 @@
     "company": {
       "name": "The Frontend Company, USA. (AVA.codes, Kyiv)",
       "timeline": "6 years (May 2020 - April 2026)",
-      "position": "Senior Web developer (Angular 8-21, React.js)"
+      "position": "Senior Web developer (Angular 8-21, React.js).\nPreviously: Junior → Middle → Senior"
     },
     "projects": [
       {
         "name": "Aifora",
         "timeline": "2.5 years",
-        "description": "Forecast system for shops",
+        "description": "Forecast system for shops.",
         "skills": ["Angular 10-21", "AgGrid", "SASS", "Angular Material", "PrimeNg", "Chart.js", "Stepper forms", "Migrated Angular from v9 to v21", "Mentoring", "Agile", "OKR", "Organize Release process"]
       },
       {
@@ -17,6 +17,36 @@
         "timeline": "2.5 years",
         "description": "Managing work process and evaluation employees in companies, creating development plans for them. Lead positions on the project - management and development.",
         "skills": ["Angular 8 - 16", "SCSS", "ngRx", "Kendo UI", "RxJS", "Error handler", "Notifications", "JWT Auth", "Api mapper", "Web Speech API", "Migrated Angular from v8 to v16"]
+      },
+      {
+        "name": "Skypath",
+        "timeline": "1 year",
+        "description": "System for showing data on the map - real flights. In live and history mode. Also reports in charts about flight info.",
+        "skills": ["Angular 13", "SCSS", "Flex/Grid", "Angular Material", "ngRx", "ngx-charts", "Angular animation"]
+      },
+      {
+        "name": "Prodanet",
+        "timeline": "1 year",
+        "description": "Product management system. Search products, product details, download cart for assets.",
+        "skills": ["Angular 16", "Bootstrap", "SCSS", "Mentoring"]
+      },
+      {
+        "name": "Repon",
+        "timeline": "6 months",
+        "description": "Admin dashboards, Entities CRUD. Image overlays / comments over images. Custom table filters.",
+        "skills": ["Angular 14", "Bootstrap", "SCSS", "Flex", "Custom fields"]
+      },
+      {
+        "name": "Pododesk",
+        "timeline": "2 years",
+        "description": "Calendar in the medicine sphere. Support, help to solve existing UI issues",
+        "skills": ["React.js", "Styled components", "JSX to TSX migration", "Mentoring"]
+      },
+      {
+        "name": "Agorate",
+        "timeline": "6 months",
+        "description": "Management system",
+        "skills": ["React.js", "Formik", "Chakra UI", "Stepper forms", "Dynamic FieldArray"]
       }
     ]
   },
@@ -43,7 +73,34 @@
     },
     "projects": [
       {
-
+        "name": "Pattr",
+        "timeline": "3 months",
+        "description": "Calling participants inside the room.",
+        "skills": ["Angular 8", "WebRTC", "NgXs", "SCSS", "Agora API"]
+      },
+      {
+        "name": "Snaptivity",
+        "timeline": "6 months",
+        "description": "Photo gallery, management photos (crop, pinch, pan, share to social media). Management of photos (CRUD photos, add overlays). Management of cameras and their photos.",
+        "skills": ["Angular 7", "Ngx-Rocket", "SCSS", "panzoom.js", "AWS AppSync + Apollo"]
+      },
+      {
+        "name": "Telecomm.web; Time-tracking",
+        "timeline": "6 months",
+        "description": "Management System",
+        "skills": ["Angular 7", "Angular material", "SCSS", "Flex", "JWT Auth", "Google Maps"]
+      },
+      {
+        "name": "Altaclub",
+        "timeline": "6 months",
+        "description": "Management System. Developed pages UI of site",
+        "skills": ["ASP.NET MVC", "CSS", "Bootstrap", "JS"]
+      },
+      {
+        "name": "Akita; Altair; Smart.exe",
+        "timeline": "1 year",
+        "description": "SPA for introducing info about the product",
+        "skills": ["Angular 5", "CSS", "Bootstrap"]
       }
     ]
   },

@@ -1,1 +1,1 @@
-["vue", "vuetify", "vue-i18n", "vue-router", "vee-validate", "axios", "tailwindcss"]
+["vue", "vuetify", "vue-i18n", "vue-router", "vee-validate", "@vueuse/head", "axios", "tailwindcss", "responsive"]

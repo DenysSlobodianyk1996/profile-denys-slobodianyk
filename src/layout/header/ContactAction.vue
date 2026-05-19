@@ -28,8 +28,7 @@
               <v-text-field
                 clearable
                 :error="!!errorMessage"
-                :error-messages="errorMessage"
-                :label="t('email.subject')"
+                :label="t('email.subject') + '*'"
                 :model-value="value"
                 variant="outlined"
                 @blur="handleBlur"
@@ -45,8 +44,7 @@
               <v-textarea
                 autofocus
                 :error="!!errorMessage"
-                :error-messages="errorMessage"
-                :label="t('email.body')"
+                :label="t('email.body') + '*'"
                 :model-value="value"
                 variant="outlined"
                 @blur="handleBlur"
