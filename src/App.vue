@@ -26,7 +26,7 @@
   const title = ref('Denys Slobodianyk Profile')
   const description = ref('Denys Slobodianyk - Frontend developer. Angular - Senior, React.js - Middle, Vue.js - Junior. Preferable - Angular and Vue positions, but React is an option too')
   const keywords = ref('Angular, Vue.js, React.js, JavaScript, TypeScript, SCSS, Bootstrap, Tailwind, Scrum, Mentoring, Code reviewing, Responsibility')
-  const photoUrl = computed(() => `${baseUrl}/data/foto.png`)
+  const photoUrl = computed(() => `${window.location.origin}${baseUrl}/data/foto.png`)
 
   useHead({
     title: computed(() => title.value),
