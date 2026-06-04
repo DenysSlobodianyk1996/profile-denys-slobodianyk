@@ -3,7 +3,7 @@
 
   <div>
     <template v-if="detail.href">
-      <a :href="detail.href" target="_blank">
+      <a class="break-all" :href="detail.href" target="_blank">
         {{ detail.desciption || detail.href }}
       </a>
     </template>
