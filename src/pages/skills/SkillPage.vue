@@ -48,7 +48,9 @@
   watch(
     skillTitles,
     newSkillTitles => {
-      selectedTab.value = newSkillTitles.at(0)?.key || ''
+      const angularTabIndex = newSkillTitles.findIndex(({ key }) => key === 'angular')
+      const defaultTabIndex = angularTabIndex === -1 ? 0 : angularTabIndex
+      selectedTab.value = newSkillTitles.at(defaultTabIndex)?.key || ''
     },
   )
 

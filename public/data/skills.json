@@ -6,17 +6,14 @@
       "RxJS",
       "Signals",
       "NgRx",
-      "PrimeNG",
       "Angular Material",
+      "PrimeNG",
       "Kendo-UI",
+      "AgGrid",
       "Angular Animation",
-      "HTML",
-      "CSS",
-      "SCSS",
-      "Bootstrap",
-      "Flex/Grid",
-      "JavaScript",
-      "TypeScript"
+      "Jasmine",
+      "Jest",
+      "ngMocks"
     ],
     "additionalInfo": "Angular Major updates - Update for projects Angular 8 to 16; 9 to 21 with continuous support.\nMigration from Angular Material to PrimeNg components (replacement)."
   },
@@ -48,6 +45,21 @@
       "vuetify.js"
     ],
     "additionalInfo": "No commertial experience"
+  },
+  "general_tech_skills": {
+    "skills": [
+      "HTML",
+      "CSS",
+      "SCSS",
+      "Bootstrap",
+      "Flex/Grid",
+      "JavaScript",
+      "TypeScript",
+      "Google Maps",
+      "PrimeFlex",
+      "Tailwind",
+      "Datadog"
+    ]
   },
   "scrum": {
     "skills": [
@@ -81,14 +93,15 @@
       "Miro",
       "Slack",
       "VS Code",
-      "Copilot",
-      "ChatGPT",
       "Figma"
     ]
   },
-  "other_tech_skills": {
+  "AI": {
     "skills": [
-      "Google Maps", "AgGrid", "PrimeFlex", "Tailwind", "Datadog"
+      "Claude Code",
+      "Ollama",
+      "Github Copilot",
+      "ChatGPT"
     ]
   }
 }
