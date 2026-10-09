@@ -99,9 +99,16 @@
   "AI": {
     "skills": [
       "Claude Code",
-      "Ollama",
-      "Github Copilot",
+      "Creating custom skills",
+      "Model selection per task (Opus, Sonnet, Haiku)",
+      "Plan mode: plan before implementation",
+      "Matt Pocock's agent skills",
+      "Claude Design",
+      "MCP: Figma",
+      "MCP: Azure DevOps",
+      "MCP: GitHub",
       "ChatGPT"
-    ]
+    ],
+    "additionalInfo": "Claude Code is my main AI tool for frontend work: planning before implementation, reusable skills, and MCP integrations with design and project-tracking tools."
   }
 }
