@@ -36,7 +36,6 @@ Scaffolded with Vuetify CLI.
 ## ✨ Enabled Features
 
 - ESLint
-- Vuetify MCP
 - Vue I18n
 - Tailwind CSS
 
@@ -70,8 +69,6 @@ npm run build
 - `npm run type-check`
 - `npm run lint`
 - `npm run lint:fix`
-- `npm run mcp`
-- `npm run mcp:revert`
 
 ## 💪 Support Vuetify Development
 

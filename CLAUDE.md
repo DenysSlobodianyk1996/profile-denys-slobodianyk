@@ -2,7 +2,13 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-@AGENTS.md
+## Working rules
+
+- Follow the existing code style and patterns.
+- Use npm for running project commands.
+- Keep code in TypeScript unless migration is required.
+- Do not commit or push automatically. Leave changes uncommitted in the working tree and commit or push only when explicitly asked.
+- Do not work in a git worktree. Make changes directly in the main checkout, on the branch that is currently checked out.
 
 ## Commands
 
@@ -17,8 +23,6 @@ npm run preview      # serve the built dist/
 ```
 
 There is no test runner and no tests. `npm run type-check` and `npm run lint` are the only automated checks.
-
-`npm run mcp` / `npm run mcp:revert` run Ruler (`ruler apply` / `ruler revert`), which generates agent config files from the gitignored `.ruler/` directory. This file is hand-written and is not managed by Ruler; keep `claude` out of `default_agents` in `.ruler/ruler.toml` so `ruler apply` does not overwrite it.
 
 ## Deployment
 
