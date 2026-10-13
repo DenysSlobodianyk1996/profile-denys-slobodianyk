@@ -1,6 +1,21 @@
 [
   {
     "company": {
+      "name": "ProCoders, Lisbon (Portugal, Kharkiv). Remote",
+      "timeline": "X months (Aug 2026 - today)",
+      "position": "Senior Frontend Engineer (Angular 19-21)"
+    },
+    "projects": [
+      {
+        "name": "Krutch",
+        "timeline": "X months",
+        "description": "Sales management CRM. Maintaining the product and developing new features. Code review, refactoring, migration from RxJS to Signals. AI-assisted development with Claude Code: MCP usage and creating AI skills for faster development. Coordination with the backend team. Preparing feature requirements, assumptions and estimates for startup-like applications. Communication with a USA client.",
+        "skills": ["Angular 19", "SCSS", "Custom components", "Unit testing", "Signals", "Claude Code", "MCP", "AI skills"]
+      }
+    ]
+  },
+  {
+    "company": {
       "name": "The Frontend Company, USA. (AVA.codes, Kyiv)",
       "timeline": "6 years (May 2020 - April 2026)",
       "position": "Senior Web developer (Angular 8-21, React.js).\nPreviously: Junior → Middle → Senior"
@@ -9,26 +24,26 @@
       {
         "name": "Aifora",
         "timeline": "2.5 years",
-        "description": "Forecast system for shops.",
-        "skills": ["Angular 10-21", "AgGrid", "SASS", "Angular Material", "PrimeNg", "Chart.js", "Stepper forms", "Migrated Angular from v9 to v21", "Mentoring", "Agile", "OKR", "Organize Release process"]
+        "description": "Forecast system for shops. Developed various stepper forms and migrated Angular from v9 to v21. Direct English communication with the customer team: Product Owner, Engineering Manager, Designer, QA, BE, Data Science and other FE developers on the customer side. Key FE developer in the team: mentoring, following Agile, OKR planning, organizing the release process, following Git flow, proposing solutions for issues and new features.",
+        "skills": ["Angular 10-21", "AgGrid", "SASS", "Angular Material", "PrimeNg", "Tailwind", "Chart.js", "Unit testing", "Git flow", "Stepper forms", "Migrated Angular from v9 to v21", "Mentoring", "Agile", "OKR", "Organize Release process"]
       },
       {
         "name": "Skill Director",
         "timeline": "2.5 years",
-        "description": "Managing work process and evaluation employees in companies, creating development plans for them. Lead positions on the project - management and development.",
-        "skills": ["Angular 8 - 16", "SCSS", "ngRx", "Kendo UI", "RxJS", "Error handler", "Notifications", "JWT Auth", "Api mapper", "Web Speech API", "Migrated Angular from v8 to v16"]
+        "description": "Assessment CRM for employees and their managers, development plans for them and a back office for admins - all in one system. Key developer on the project: led other developers, direct communication with the client and designer from the USA. Developed the system from scratch and maintained it, migrated Angular from v8 to v16 (the latest at that time). Proposed features, resolved issues, communicated with BE developers, planned feature scope and estimates.",
+        "skills": ["Angular 8 - 16", "SCSS", "ngRx", "Kendo UI", "RxJS", "Error handler", "Notifications", "JWT Auth", "Api mapper", "Reusable templates", "Web Speech API", "Migrated Angular from v8 to v16"]
       },
       {
         "name": "Skypath",
         "timeline": "1 year",
-        "description": "System for showing data on the map - real flights. In live and history mode. Also reports in charts about flight info.",
+        "description": "System for showing data on the map - real flights. In live and history mode. Also reports in charts about flight info. Contributed to charts, reports and animations, followed the design, improved NgRx usage, code review and refactoring. English communication with customers.",
         "skills": ["Angular 13", "SCSS", "Flex/Grid", "Angular Material", "ngRx", "ngx-charts", "Angular animation"]
       },
       {
         "name": "Prodanet",
         "timeline": "1 year",
-        "description": "Product management system. Search products, product details, download cart for assets.",
-        "skills": ["Angular 16", "Bootstrap", "SCSS", "Mentoring"]
+        "description": "Product management system. Search products, product details, download cart for assets. Mentoring, creating new features and custom controls. English communication with customers and BE developers.",
+        "skills": ["Angular 16", "Bootstrap", "SCSS", "Custom controls", "Mentoring"]
       },
       {
         "name": "Repon",
@@ -39,13 +54,13 @@
       {
         "name": "Pododesk",
         "timeline": "2 years",
-        "description": "Calendar in the medicine sphere. Support, help to solve existing UI issues",
-        "skills": ["React.js", "Styled components", "JSX to TSX migration", "Mentoring"]
+        "description": "Calendar in the medicine sphere. Support and solving existing UI issues, moving JSX to TSX. Mentoring, maintaining, migration, refactoring, resolving issues, QA. English communication with customers.",
+        "skills": ["React.js", "TypeScript", "Styled components", "JSX to TSX migration", "Mentoring"]
       },
       {
         "name": "Agorate",
         "timeline": "6 months",
-        "description": "Management system",
+        "description": "Management system. English communication with customers.",
         "skills": ["React.js", "Formik", "Chakra UI", "Stepper forms", "Dynamic FieldArray"]
       }
     ]
@@ -60,7 +75,7 @@
       {
         "name": "Sachal",
         "timeline": "4 months",
-        "description": "Insurance website",
+        "description": "Insurance website. Multi-step forms with custom form components: digital signature, line slider, file upload. English communication with customers.",
         "skills": ["Angular 8", "Multi step forms", "Angular animations", "SCSS", "Flexbox", "rxjs", "D3.js", "Digital signature", "Line slider", "File upload", "Hebrew language"]
       }
     ]
