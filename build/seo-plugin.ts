@@ -2,29 +2,23 @@ import type { HtmlTagDescriptor, Plugin } from 'vite'
 import { readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 import {
+  buildSeo,
   SEO_AUTHOR,
   SEO_CANONICAL_URL,
-  SEO_DESCRIPTION,
   SEO_IMAGE_URL,
   SEO_JOB_TITLE,
-  SEO_KEYWORDS,
-  SEO_ROUTES,
+  SEO_PATHS,
   SEO_SITE_NAME,
   SEO_TITLE,
+  type SeoModel,
+  type SeoPersonalInfoData,
   seoRouteUrl,
+  type SeoSkillsData,
 } from '../src/static/seo'
 
-interface PersonalInfoEntry {
-  title: string
-  desciption?: string
-  href?: string
-}
-
-interface PersonalInfoJson {
-  additionalDetails: PersonalInfoEntry[]
-}
-
-type SkillsJson = Record<string, { skills: string[] }>
+const VIRTUAL_ID = 'virtual:seo'
+const RESOLVED_VIRTUAL_ID = `\0${VIRTUAL_ID}`
+const DATA_FILES = ['personal-info.json', 'skills.json']
 
 // Skill groups that describe technical expertise. Soft skills, workflow tools and the
 // rest of the scrum/AI lists are left out of knowsAbout on purpose.
@@ -34,17 +28,24 @@ const KNOWS_ABOUT_SUFFIX = ['Claude Code', 'Agile (Scrum, Kanban)']
 // Generic phrases from skills.json that mean nothing to a search engine on their own.
 const KNOWS_ABOUT_EXCLUDED = new Set(['Base syntax', 'Hooks', 'Functional / Class components', 'React with typescript', 'Flex/Grid'])
 
+interface SeoData {
+  skills: SeoSkillsData
+  personalInfo: SeoPersonalInfoData
+  seo: SeoModel
+}
+
 function readJson<T> (dataDir: string, fileName: string): T {
   return JSON.parse(readFileSync(resolve(dataDir, fileName), 'utf8')) as T
 }
 
-function findEntry (personalInfo: PersonalInfoJson, title: string): PersonalInfoEntry | undefined {
-  return personalInfo.additionalDetails.find(entry => entry.title === title)
+function loadSeoData (dataDir: string): SeoData {
+  const skills = readJson<SeoSkillsData>(dataDir, 'skills.json')
+  const personalInfo = readJson<SeoPersonalInfoData>(dataDir, 'personal-info.json')
+  return { skills, personalInfo, seo: buildSeo(skills, personalInfo) }
 }
 
-function buildPerson (dataDir: string): Record<string, unknown> {
-  const personalInfo = readJson<PersonalInfoJson>(dataDir, 'personal-info.json')
-  const skills = readJson<SkillsJson>(dataDir, 'skills.json')
+function buildPerson ({ skills, personalInfo, seo }: SeoData): Record<string, unknown> {
+  const findEntry = (title: string) => personalInfo.additionalDetails.find(entry => entry.title === title)
 
   const knowsAbout = [
     ...new Set([
@@ -54,9 +55,9 @@ function buildPerson (dataDir: string): Record<string, unknown> {
     ]),
   ].filter(skill => !KNOWS_ABOUT_EXCLUDED.has(skill))
   const sameAs = ['LinkedIn', 'Github']
-    .map(title => findEntry(personalInfo, title)?.href)
+    .map(title => findEntry(title)?.href)
     .filter((href): href is string => !!href)
-  const email = findEntry(personalInfo, 'Email')?.desciption
+  const email = findEntry('Email')?.desciption
 
   return {
     '@context': 'https://schema.org',
@@ -66,12 +67,16 @@ function buildPerson (dataDir: string): Record<string, unknown> {
     'url': SEO_CANONICAL_URL,
     'image': SEO_IMAGE_URL,
     ...(email ? { email } : {}),
-    'address': {
-      '@type': 'PostalAddress',
-      'addressLocality': 'Bila Tserkva',
-      'addressRegion': 'Kyiv region',
-      'addressCountry': 'UA',
-    },
+    ...(seo.address
+      ? {
+          address: {
+            '@type': 'PostalAddress',
+            'addressLocality': seo.address.locality,
+            ...(seo.address.region ? { addressRegion: seo.address.region } : {}),
+            'addressCountry': seo.address.country,
+          },
+        }
+      : {}),
     sameAs,
     knowsAbout,
   }
@@ -87,9 +92,9 @@ function escapeHtml (value: string): string {
 
 // No <lastmod>: a build date changes on every deploy, so Google would learn to ignore it.
 function buildSitemap (): string {
-  const urls = Object.values(SEO_ROUTES).map(route => [
+  const urls = Object.values(SEO_PATHS).map(path => [
     '  <url>',
-    `    <loc>${escapeHtml(seoRouteUrl(route.path))}</loc>`,
+    `    <loc>${escapeHtml(seoRouteUrl(path))}</loc>`,
     '  </url>',
   ].join('\n'))
 
@@ -106,9 +111,11 @@ function buildRobots (): string {
   return ['User-agent: *', 'Allow: /', '', `Sitemap: ${SEO_CANONICAL_URL}sitemap.xml`, ''].join('\n')
 }
 
-// Bakes the SEO head (meta, Open Graph, Twitter card, JSON-LD Person) into index.html,
-// so crawlers and link previewers that do not run JavaScript still see it.
-// On build it also emits robots.txt and sitemap.xml.
+// Builds the SEO copy from public/data JSON once and uses it in three places:
+// - bakes the head (meta, Open Graph, Twitter card, JSON-LD Person) into index.html,
+//   so crawlers and link previewers that do not run JavaScript still see it;
+// - serves it to the app as `virtual:seo` for the per-route runtime head;
+// - on build, emits robots.txt and sitemap.xml.
 export function seoPlugin (): Plugin {
   let dataDir = ''
 
@@ -117,27 +124,41 @@ export function seoPlugin (): Plugin {
     configResolved (config) {
       dataDir = resolve(config.publicDir, 'data')
     },
+    resolveId (id) {
+      return id === VIRTUAL_ID ? RESOLVED_VIRTUAL_ID : undefined
+    },
+    load (id) {
+      if (id !== RESOLVED_VIRTUAL_ID) {
+        return undefined
+      }
+      for (const file of DATA_FILES) {
+        this.addWatchFile(resolve(dataDir, file))
+      }
+      return `export default ${JSON.stringify(loadSeoData(dataDir).seo)}`
+    },
     transformIndexHtml (html) {
+      const data = loadSeoData(dataDir)
+      const { description, keywords } = data.seo
       // Escape "<" so the JSON can never close the <script> element early.
-      const jsonLd = JSON.stringify(buildPerson(dataDir), null, 2).replaceAll('<', String.raw`\u003c`)
+      const jsonLd = JSON.stringify(buildPerson(data), null, 2).replaceAll('<', String.raw`\u003c`)
 
       const tags: HtmlTagDescriptor[] = [
-        meta('name', 'description', SEO_DESCRIPTION),
-        meta('name', 'keywords', SEO_KEYWORDS),
+        meta('name', 'description', description),
+        meta('name', 'keywords', keywords),
         meta('name', 'author', SEO_AUTHOR),
         meta('name', 'robots', 'index,follow'),
         { tag: 'link', attrs: { rel: 'canonical', href: SEO_CANONICAL_URL }, injectTo: 'head' },
 
         meta('property', 'og:type', 'website'),
         meta('property', 'og:title', SEO_TITLE),
-        meta('property', 'og:description', SEO_DESCRIPTION),
+        meta('property', 'og:description', description),
         meta('property', 'og:url', SEO_CANONICAL_URL),
         meta('property', 'og:image', SEO_IMAGE_URL),
         meta('property', 'og:site_name', SEO_SITE_NAME),
 
         meta('name', 'twitter:card', 'summary'),
         meta('name', 'twitter:title', SEO_TITLE),
-        meta('name', 'twitter:description', SEO_DESCRIPTION),
+        meta('name', 'twitter:description', description),
         meta('name', 'twitter:image', SEO_IMAGE_URL),
 
         { tag: 'script', attrs: { type: 'application/ld+json' }, children: jsonLd, injectTo: 'head' },

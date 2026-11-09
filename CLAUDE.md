@@ -36,8 +36,8 @@ Two things exist only because of GitHub Pages hosting:
 
 ### SEO
 
-- SEO copy (titles, descriptions, keywords, per-route meta) lives in `src/static/seo.ts`, shared by the runtime head in `src/App.vue` and the build plugin `build/seo-plugin.ts`. The plugin bakes meta, Open Graph and JSON-LD into `index.html` and emits `robots.txt` and `sitemap.xml`.
-- `scripts/prerender.mjs` renders each sitemap route with Playwright so GitHub Pages serves real HTML with HTTP 200. A new page needs an entry in `SEO_ROUTES` to be prerendered.
+- SEO wording lives in `src/static/seo.ts`. Facts in it (years, Angular version, skill names, location) are read from `public/data/*.json` by `buildSeo()`, never typed twice. `build/seo-plugin.ts` runs `buildSeo()` at build time, bakes meta, Open Graph and JSON-LD into `index.html`, serves the result to `src/App.vue` as the `virtual:seo` module, and emits `robots.txt` and `sitemap.xml`.
+- `scripts/prerender.mjs` renders each sitemap route with Playwright so GitHub Pages serves real HTML with HTTP 200. A new page needs an entry in `SEO_PATHS` and `buildSeo()` routes to be prerendered.
 
 `import.meta.env.BASE_URL` has no trailing slash here, so code builds asset URLs as `` `${BASE_URL}/data/...` ``. Anything in `public/` must be referenced through `BASE_URL`, never by a root-relative path.
 
@@ -87,5 +87,5 @@ Most changes to this repo are content updates, and they usually need no componen
 - `skills.json` is a map: each top-level key becomes a tab, its title derived from the key by splitting on `_` and capitalizing. The `angular` key is selected by default.
 - `personal-info.json` entries use the property name `desciption` (spelled that way in the model and the data); a new entry must match it.
 - The CV is `public/data/CV_Denys_S_Angular_React_Vue.pdf`. Its filename is hardcoded in `src/layout/header/DownloadCVAction.vue`, so replace the file under the same name or update that path.
-- SEO titles, descriptions and keywords live in `src/static/seo.ts` and are not read from the JSON, so update them alongside a positioning change. The JSON-LD skills list (`knowsAbout`) is built from `skills.json` by `build/seo-plugin.ts`.
+- SEO text follows the JSON: years, Angular version, the first Angular skills in `skills.json` (their order matters), and the "Based in …" location in `personal-info.json` feed titles, descriptions, keywords and JSON-LD. Only the positioning wording (name, "Senior Angular Developer") is in `src/static/seo.ts`.
 - Any new UI string needs a key in both `src/plugins/i18n/en.ts` and `src/plugins/i18n/ua.ts`.
