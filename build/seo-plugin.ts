@@ -8,6 +8,7 @@ import {
   SEO_IMAGE_URL,
   SEO_JOB_TITLE,
   SEO_KEYWORDS,
+  SEO_ROUTES,
   SEO_SITE_NAME,
   SEO_TITLE,
 } from '../src/static/seo'
@@ -83,8 +84,36 @@ function escapeHtml (value: string): string {
   return value.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;')
 }
 
+// Absolute URL of a route, with the trailing slash GitHub Pages serves directories with.
+function routeUrl (path: string): string {
+  const relative = path.replace(/^\/+|\/+$/g, '')
+  return relative ? `${SEO_CANONICAL_URL}${relative}/` : SEO_CANONICAL_URL
+}
+
+function buildSitemap (lastmod: string): string {
+  const urls = Object.values(SEO_ROUTES).map(route => [
+    '  <url>',
+    `    <loc>${escapeHtml(routeUrl(route.path))}</loc>`,
+    `    <lastmod>${lastmod}</lastmod>`,
+    '  </url>',
+  ].join('\n'))
+
+  return [
+    '<?xml version="1.0" encoding="UTF-8"?>',
+    '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
+    ...urls,
+    '</urlset>',
+    '',
+  ].join('\n')
+}
+
+function buildRobots (): string {
+  return ['User-agent: *', 'Allow: /', '', `Sitemap: ${SEO_CANONICAL_URL}sitemap.xml`, ''].join('\n')
+}
+
 // Bakes the SEO head (meta, Open Graph, Twitter card, JSON-LD Person) into index.html,
 // so crawlers and link previewers that do not run JavaScript still see it.
+// On build it also emits robots.txt and sitemap.xml.
 export function seoPlugin (): Plugin {
   let dataDir = ''
 
@@ -123,6 +152,12 @@ export function seoPlugin (): Plugin {
         html: html.replace(/<title>[\s\S]*?<\/title>/, `<title>${escapeHtml(SEO_TITLE)}</title>`),
         tags,
       }
+    },
+    generateBundle () {
+      const lastmod = new Date().toISOString().slice(0, 10)
+
+      this.emitFile({ type: 'asset', fileName: 'robots.txt', source: buildRobots() })
+      this.emitFile({ type: 'asset', fileName: 'sitemap.xml', source: buildSitemap(lastmod) })
     },
   }
 }
