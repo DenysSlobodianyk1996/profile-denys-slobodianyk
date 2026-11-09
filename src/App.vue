@@ -9,7 +9,7 @@
 
 <script lang="ts" setup>
   import { useHead } from '@vueuse/head'
-  import { computed, ref, watch } from 'vue'
+  import { watch } from 'vue'
   import { useI18n } from 'vue-i18n'
   import { useTheme } from 'vuetify'
 
@@ -17,68 +17,40 @@
   import Header from '@/layout/header'
   import Main from '@/layout/Main.vue'
   import Navigation from '@/layout/navigation'
-  import { LANGUAGE_KEY, THEME_KEY } from '@/static'
+  import {
+    LANGUAGE_KEY,
+    SEO_CANONICAL_URL,
+    SEO_DESCRIPTION,
+    SEO_IMAGE_URL,
+    SEO_KEYWORDS,
+    SEO_SITE_NAME,
+    SEO_TITLE,
+    THEME_KEY,
+  } from '@/static'
 
   const theme = useTheme()
   const i18n = useI18n()
-  const baseUrl = import.meta.env.BASE_URL
 
-  const title = ref('Denys Slobodianyk Profile')
-  const description = ref('Denys Slobodianyk - Frontend developer. Angular - Senior, React.js - Middle, Vue.js - Junior. Preferable - Angular and Vue positions, but React is an option too')
-  const keywords = ref('Angular, Vue.js, React.js, JavaScript, TypeScript, SCSS, Bootstrap, Tailwind, Scrum, Mentoring, Code reviewing, Responsibility')
-  const photoUrl = computed(() => `${window.location.origin}${baseUrl}/data/foto.png`)
-
+  // The same tags are baked into index.html at build time (build/seo-plugin.ts).
   useHead({
-    title: computed(() => title.value),
+    title: SEO_TITLE,
     meta: [
-      {
-        name: 'description',
-        content: computed(() => description.value),
-      },
-      {
-        name: 'keywords',
-        content: computed(() => keywords.value),
-      },
+      { name: 'description', content: SEO_DESCRIPTION },
+      { name: 'keywords', content: SEO_KEYWORDS },
 
       // Open Graph (Facebook, LinkedIn, etc.)
-      {
-        name: 'og:type',
-        content: 'website',
-      },
-      {
-        name: 'og:title',
-        content: computed(() => title.value),
-      },
-      {
-        name: 'og:description',
-        content: computed(() => description.value),
-      },
-      {
-        name: 'og:image',
-        content: computed(() => photoUrl.value),
-      },
-      {
-        name: 'og:url',
-        content: baseUrl,
-      },
-      {
-        name: 'og:site_name',
-        content: computed(() => title.value),
-      },
+      { property: 'og:type', content: 'website' },
+      { property: 'og:title', content: SEO_TITLE },
+      { property: 'og:description', content: SEO_DESCRIPTION },
+      { property: 'og:image', content: SEO_IMAGE_URL },
+      { property: 'og:url', content: SEO_CANONICAL_URL },
+      { property: 'og:site_name', content: SEO_SITE_NAME },
 
       // Twitter
-      {
-        name: 'twitter:title',
-        content: computed(() => title.value),
-      },
-      {
-        name: 'twitter:description',
-        content: computed(() => description.value),
-      },
-      {
-        name: 'twitter:image',
-        content: computed(() => photoUrl.value),
-      },
+      { name: 'twitter:card', content: 'summary' },
+      { name: 'twitter:title', content: SEO_TITLE },
+      { name: 'twitter:description', content: SEO_DESCRIPTION },
+      { name: 'twitter:image', content: SEO_IMAGE_URL },
     ],
   })
 
