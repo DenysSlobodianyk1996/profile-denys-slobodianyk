@@ -6,7 +6,7 @@
 // The Vue app mounts with createApp() (no hydration), so in the browser it simply
 // replaces the prerendered markup.
 //
-// Routes come from dist/sitemap.xml, which build/seo-plugin.ts generates from SEO_ROUTES
+// Routes come from dist/sitemap.xml, which build/seo-plugin.ts generates from SEO_PATHS
 // (src/static/seo.ts). Reading the build output keeps this script plain JavaScript and
 // keeps a single list of routes.
 //

@@ -9,6 +9,7 @@
 
 <script lang="ts" setup>
   import { useHead } from '@vueuse/head'
+  import seo from 'virtual:seo'
   import { computed, watch } from 'vue'
   import { useI18n } from 'vue-i18n'
   import { useRoute } from 'vue-router'
@@ -21,8 +22,6 @@
   import {
     LANGUAGE_KEY,
     SEO_IMAGE_URL,
-    SEO_KEYWORDS,
-    SEO_ROUTES,
     SEO_SITE_NAME,
     type SeoRouteId,
     type SeoRouteModel,
@@ -38,7 +37,7 @@
   // Unknown or not-yet-resolved routes fall back to the home page copy.
   const seoRoute = computed<SeoRouteModel>(() => {
     const name = route.name as SeoRouteId | undefined
-    return (name && SEO_ROUTES[name]) || SEO_ROUTES['personal-info']
+    return (name && seo.routes[name]) || seo.routes['personal-info']
   })
   const canonicalUrl = computed(() => seoRouteUrl(seoRoute.value.path))
 
@@ -52,7 +51,7 @@
     ],
     meta: [
       { name: 'description', content: () => seoRoute.value.description },
-      { name: 'keywords', content: SEO_KEYWORDS },
+      { name: 'keywords', content: seo.keywords },
 
       // Open Graph (Facebook, LinkedIn, etc.)
       { property: 'og:type', content: 'website' },
