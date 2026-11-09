@@ -87,5 +87,5 @@ Most changes to this repo are content updates, and they usually need no componen
 - `skills.json` is a map: each top-level key becomes a tab, its title derived from the key by splitting on `_` and capitalizing. The `angular` key is selected by default.
 - `personal-info.json` entries use the property name `desciption` (spelled that way in the model and the data); a new entry must match it.
 - The CV is `public/data/CV_Denys_S_Angular_React_Vue.pdf`. Its filename is hardcoded in `src/layout/header/DownloadCVAction.vue`, so replace the file under the same name or update that path.
-- The headline description and keywords used for SEO are hardcoded in `src/App.vue` and are not read from the JSON, so update them alongside a positioning change.
+- SEO titles, descriptions and keywords live in `src/static/seo.ts` and are not read from the JSON, so update them alongside a positioning change. The JSON-LD skills list (`knowsAbout`) is built from `skills.json` by `build/seo-plugin.ts`.
 - Any new UI string needs a key in both `src/plugins/i18n/en.ts` and `src/plugins/i18n/ua.ts`.

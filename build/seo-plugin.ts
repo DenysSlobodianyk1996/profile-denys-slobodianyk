@@ -85,11 +85,11 @@ function escapeHtml (value: string): string {
   return value.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;')
 }
 
-function buildSitemap (lastmod: string): string {
+// No <lastmod>: a build date changes on every deploy, so Google would learn to ignore it.
+function buildSitemap (): string {
   const urls = Object.values(SEO_ROUTES).map(route => [
     '  <url>',
     `    <loc>${escapeHtml(seoRouteUrl(route.path))}</loc>`,
-    `    <lastmod>${lastmod}</lastmod>`,
     '  </url>',
   ].join('\n'))
 
@@ -119,7 +119,7 @@ export function seoPlugin (): Plugin {
     },
     transformIndexHtml (html) {
       // Escape "<" so the JSON can never close the <script> element early.
-      const jsonLd = JSON.stringify(buildPerson(dataDir), null, 2).replaceAll('<', String.raw`<`)
+      const jsonLd = JSON.stringify(buildPerson(dataDir), null, 2).replaceAll('<', String.raw`\u003c`)
 
       const tags: HtmlTagDescriptor[] = [
         meta('name', 'description', SEO_DESCRIPTION),
@@ -149,10 +149,8 @@ export function seoPlugin (): Plugin {
       }
     },
     generateBundle () {
-      const lastmod = new Date().toISOString().slice(0, 10)
-
       this.emitFile({ type: 'asset', fileName: 'robots.txt', source: buildRobots() })
-      this.emitFile({ type: 'asset', fileName: 'sitemap.xml', source: buildSitemap(lastmod) })
+      this.emitFile({ type: 'asset', fileName: 'sitemap.xml', source: buildSitemap() })
     },
   }
 }

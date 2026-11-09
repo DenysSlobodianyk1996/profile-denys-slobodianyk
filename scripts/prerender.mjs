@@ -49,11 +49,19 @@ async function renderRoute (browser, origin, routePath) {
     }
   })
   page.on('pageerror', error => problems.push(`page error: ${error.message}`))
-  page.on('requestfailed', request => problems.push(`request failed: ${request.url()} (${request.failure()?.errorText})`))
+  // Only failures of our own files matter. Chromium aborts some requests on its own
+  // (net::ERR_ABORTED), and a third-party hiccup should not block the deploy.
+  const isOwnUrl = url => url.startsWith(origin)
+  page.on('requestfailed', request => {
+    const errorText = request.failure()?.errorText
+    if (isOwnUrl(request.url()) && errorText !== 'net::ERR_ABORTED') {
+      problems.push(`request failed: ${request.url()} (${errorText})`)
+    }
+  })
 
   let dataResponses = 0
   page.on('response', response => {
-    if (response.status() >= 400) {
+    if (response.status() >= 400 && isOwnUrl(response.url())) {
       problems.push(`HTTP ${response.status()}: ${response.url()}`)
     } else if (/\/data\/[^/]+\.json$/.test(new URL(response.url()).pathname)) {
       // vite preview answers a missing file with the SPA shell and a 200.
