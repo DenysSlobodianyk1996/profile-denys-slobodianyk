@@ -11,6 +11,12 @@ export interface SeoRouteModel {
 
 export const SEO_CANONICAL_URL = 'https://denysslobodianyk1996.github.io/profile-denys-slobodianyk/'
 
+// Absolute URL of a route, with the trailing slash GitHub Pages uses for prerendered folders.
+export function seoRouteUrl (path: string): string {
+  const relative = path.replace(/^\/+|\/+$/g, '')
+  return relative ? `${SEO_CANONICAL_URL}${relative}/` : SEO_CANONICAL_URL
+}
+
 export const SEO_AUTHOR = 'Denys Slobodianyk'
 
 export const SEO_JOB_TITLE = 'Senior Angular Developer'

@@ -9,8 +9,9 @@
 
 <script lang="ts" setup>
   import { useHead } from '@vueuse/head'
-  import { watch } from 'vue'
+  import { computed, watch } from 'vue'
   import { useI18n } from 'vue-i18n'
+  import { useRoute } from 'vue-router'
   import { useTheme } from 'vuetify'
 
   import Footer from '@/layout/Footer.vue'
@@ -19,37 +20,52 @@
   import Navigation from '@/layout/navigation'
   import {
     LANGUAGE_KEY,
-    SEO_CANONICAL_URL,
-    SEO_DESCRIPTION,
     SEO_IMAGE_URL,
     SEO_KEYWORDS,
+    SEO_ROUTES,
     SEO_SITE_NAME,
-    SEO_TITLE,
+    type SeoRouteId,
+    type SeoRouteModel,
+    seoRouteUrl,
     THEME_KEY,
   } from '@/static'
 
   const theme = useTheme()
   const i18n = useI18n()
 
-  // The same tags are baked into index.html at build time (build/seo-plugin.ts).
+  const route = useRoute()
+
+  // Unknown or not-yet-resolved routes fall back to the home page copy.
+  const seoRoute = computed<SeoRouteModel>(() => {
+    const name = route.name as SeoRouteId | undefined
+    return (name && SEO_ROUTES[name]) || SEO_ROUTES['personal-info']
+  })
+  const canonicalUrl = computed(() => seoRouteUrl(seoRoute.value.path))
+
+  // index.html already carries the home-page versions of these tags (build/seo-plugin.ts).
+  // Unhead matches existing <meta>/<link rel="canonical"> elements by their dedupe key
+  // (name/property/rel) and updates them in place, so no duplicates are added.
   useHead({
-    title: SEO_TITLE,
+    title: () => seoRoute.value.title,
+    link: [
+      { rel: 'canonical', href: canonicalUrl },
+    ],
     meta: [
-      { name: 'description', content: SEO_DESCRIPTION },
+      { name: 'description', content: () => seoRoute.value.description },
       { name: 'keywords', content: SEO_KEYWORDS },
 
       // Open Graph (Facebook, LinkedIn, etc.)
       { property: 'og:type', content: 'website' },
-      { property: 'og:title', content: SEO_TITLE },
-      { property: 'og:description', content: SEO_DESCRIPTION },
+      { property: 'og:title', content: () => seoRoute.value.title },
+      { property: 'og:description', content: () => seoRoute.value.description },
       { property: 'og:image', content: SEO_IMAGE_URL },
-      { property: 'og:url', content: SEO_CANONICAL_URL },
+      { property: 'og:url', content: canonicalUrl },
       { property: 'og:site_name', content: SEO_SITE_NAME },
 
       // Twitter
       { name: 'twitter:card', content: 'summary' },
-      { name: 'twitter:title', content: SEO_TITLE },
-      { name: 'twitter:description', content: SEO_DESCRIPTION },
+      { name: 'twitter:title', content: () => seoRoute.value.title },
+      { name: 'twitter:description', content: () => seoRoute.value.description },
       { name: 'twitter:image', content: SEO_IMAGE_URL },
     ],
   })

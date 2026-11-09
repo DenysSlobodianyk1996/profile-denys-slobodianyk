@@ -11,6 +11,7 @@ import {
   SEO_ROUTES,
   SEO_SITE_NAME,
   SEO_TITLE,
+  seoRouteUrl,
 } from '../src/static/seo'
 
 interface PersonalInfoEntry {
@@ -84,16 +85,10 @@ function escapeHtml (value: string): string {
   return value.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;')
 }
 
-// Absolute URL of a route, with the trailing slash GitHub Pages serves directories with.
-function routeUrl (path: string): string {
-  const relative = path.replace(/^\/+|\/+$/g, '')
-  return relative ? `${SEO_CANONICAL_URL}${relative}/` : SEO_CANONICAL_URL
-}
-
 function buildSitemap (lastmod: string): string {
   const urls = Object.values(SEO_ROUTES).map(route => [
     '  <url>',
-    `    <loc>${escapeHtml(routeUrl(route.path))}</loc>`,
+    `    <loc>${escapeHtml(seoRouteUrl(route.path))}</loc>`,
     `    <lastmod>${lastmod}</lastmod>`,
     '  </url>',
   ].join('\n'))
