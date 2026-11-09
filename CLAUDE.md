@@ -14,8 +14,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ```bash
 npm run dev          # Vite dev server on http://localhost:4200/profile-denys-slobodianyk
-npm run build        # type-check + vite build in parallel, then copies dist/index.html to dist/404.html
+npm run build        # type-check + vite build in parallel, copies dist/index.html to dist/404.html, then prerenders routes
 npm run build-only   # vite build without type-check
+npm run prerender    # Playwright renders every sitemap route into dist/<route>/index.html (needs a built dist/)
 npm run type-check   # vue-tsc --build --force
 npm run lint         # eslint (eslint-config-vuetify, TS enabled)
 npm run lint:fix
@@ -31,7 +32,12 @@ Every push to `main` runs `.github/workflows/deployment-pipeline.yml`, which bui
 Two things exist only because of GitHub Pages hosting:
 
 - `base: '/profile-denys-slobodianyk'` in `vite.config.mts`. The site is served from that sub-path, and the router uses `createWebHistory(import.meta.env.BASE_URL)`.
-- The `cp dist/index.html dist/404.html` step in `npm run build`. It is the SPA fallback that makes deep links such as `/skills` work with history-mode routing.
+- The `cp dist/index.html dist/404.html` step in `npm run build`. It is the SPA fallback for unknown paths, and it runs before prerender so `404.html` stays the empty shell.
+
+### SEO
+
+- SEO copy (titles, descriptions, keywords, per-route meta) lives in `src/static/seo.ts`, shared by the runtime head in `src/App.vue` and the build plugin `build/seo-plugin.ts`. The plugin bakes meta, Open Graph and JSON-LD into `index.html` and emits `robots.txt` and `sitemap.xml`.
+- `scripts/prerender.mjs` renders each sitemap route with Playwright so GitHub Pages serves real HTML with HTTP 200. A new page needs an entry in `SEO_ROUTES` to be prerendered.
 
 `import.meta.env.BASE_URL` has no trailing slash here, so code builds asset URLs as `` `${BASE_URL}/data/...` ``. Anything in `public/` must be referenced through `BASE_URL`, never by a root-relative path.
 
@@ -81,5 +87,5 @@ Most changes to this repo are content updates, and they usually need no componen
 - `skills.json` is a map: each top-level key becomes a tab, its title derived from the key by splitting on `_` and capitalizing. The `angular` key is selected by default.
 - `personal-info.json` entries use the property name `desciption` (spelled that way in the model and the data); a new entry must match it.
 - The CV is `public/data/CV_Denys_S_Angular_React_Vue.pdf`. Its filename is hardcoded in `src/layout/header/DownloadCVAction.vue`, so replace the file under the same name or update that path.
-- The headline description and keywords used for SEO are hardcoded in `src/App.vue` and are not read from the JSON, so update them alongside a positioning change.
+- SEO titles, descriptions and keywords live in `src/static/seo.ts` and are not read from the JSON, so update them alongside a positioning change. The JSON-LD skills list (`knowsAbout`) is built from `skills.json` by `build/seo-plugin.ts`.
 - Any new UI string needs a key in both `src/plugins/i18n/en.ts` and `src/plugins/i18n/ua.ts`.

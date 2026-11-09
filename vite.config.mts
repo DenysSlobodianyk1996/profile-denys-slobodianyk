@@ -4,11 +4,13 @@ import Vue from '@vitejs/plugin-vue'
 import Fonts from 'unplugin-fonts/vite'
 import { defineConfig } from 'vite'
 import Vuetify, { transformAssetUrls } from 'vite-plugin-vuetify'
+import { seoPlugin } from './build/seo-plugin'
 
 // https://vitejs.dev/config/
 export default defineConfig({
   base: '/profile-denys-slobodianyk',
   plugins: [
+    seoPlugin(),
     tailwindcss(),
     Vue({
       template: { transformAssetUrls },
