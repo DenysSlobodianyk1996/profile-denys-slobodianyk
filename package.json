@@ -5,12 +5,13 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "vite",
-    "build": "run-p type-check \"build-only {@}\" -- && cp dist/index.html dist/404.html",
+    "build": "run-p type-check \"build-only {@}\" -- && cp dist/index.html dist/404.html && npm run prerender",
     "preview": "vite preview",
     "build-only": "vite build",
     "type-check": "vue-tsc --build --force",
     "lint": "eslint",
-    "lint:fix": "eslint --fix"
+    "lint:fix": "eslint --fix",
+    "prerender": "node scripts/prerender.mjs"
   },
   "dependencies": {
     "@fontsource/roboto": "^5.2.10",
@@ -35,6 +36,7 @@
     "eslint": "^9.39.4",
     "eslint-config-vuetify": "^4.3.4",
     "npm-run-all2": "^8.0.4",
+    "playwright": "^1.65.0",
     "sass-embedded": "^1.98.0",
     "tailwindcss": "^4.2.1",
     "typescript": "~5.9.3",
