@@ -42,7 +42,9 @@ jobs:
           path: dist
 
       # The IndexNow job runs on a fresh runner, so hand it the files it submits from.
+      # deploy needs this job, so a failed upload must not fail it: IndexNow is optional.
       - name: Upload IndexNow inputs
+        continue-on-error: true
         uses: actions/upload-artifact@v4
         with:
           name: indexnow-inputs
@@ -71,11 +73,31 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # Only resubmit when the push touched what ends up on the site. The checkout is
+      # shallow, so fetch the pre-push commit on its own; git diff needs just the two trees.
+      # A first push (all-zero `before`) or a force push whose old tip is gone submits anyway.
+      - name: Check for site changes
+        id: changes
+        env:
+          BEFORE: ${{ github.event.before }}
+        run: |
+          if [[ "$BEFORE" =~ ^0+$ ]] || ! git fetch --quiet --depth=1 origin "$BEFORE"; then
+            echo "No previous commit to compare against, submitting."
+            echo "site=true" >> "$GITHUB_OUTPUT"
+          elif git diff --name-only "$BEFORE" "$GITHUB_SHA" | grep -qE '^(public/|src/|build/|index\.html$)'; then
+            echo "site=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "No changes under public/, src/, build/ or index.html, skipping IndexNow."
+            echo "site=false" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Download IndexNow inputs
+        if: steps.changes.outputs.site == 'true'
         uses: actions/download-artifact@v4
         with:
           name: indexnow-inputs
           path: dist
 
       - name: Submit URLs to IndexNow
+        if: steps.changes.outputs.site == 'true'
         run: node scripts/indexnow.mjs dist
