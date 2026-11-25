@@ -1,5 +1,7 @@
 <template>
   <v-sheet class="flex flex-col gap-4 max-w-200">
+    <p v-if="!!skill.description">{{ skill.description }}</p>
+
     <v-sheet>
       <p><b v-html="skillTitle" /></p>
 
