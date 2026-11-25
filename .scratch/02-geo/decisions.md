@@ -32,7 +32,7 @@ Not doing: llms.txt, a custom domain, a `DenysSlobodianyk1996.github.io` root re
 - [ ] Optionally tell the four recommenders that you quote them.
 - [ ] Longer term: talks and meetups, open-source credits, other independent mentions.
 
-## Prompt panel (run monthly in ChatGPT, Perplexity, Gemini and Claude; log in `.scratch/geo/panel-YYYY-MM.md`)
+## Prompt panel (run monthly in ChatGPT, Perplexity, Gemini and Claude; log in `.scratch/02-geo/panel-YYYY-MM.md`)
 1. Top senior Angular developers in Ukraine
 2. Recommend a remote senior Angular developer to hire
 3. Top senior frontend developers from Ukraine open to remote work
