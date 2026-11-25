@@ -41,6 +41,16 @@ jobs:
         with:
           path: dist
 
+      # The IndexNow job runs on a fresh runner, so hand it the files it submits from.
+      - name: Upload IndexNow inputs
+        uses: actions/upload-artifact@v4
+        with:
+          name: indexnow-inputs
+          path: |
+            dist/sitemap.xml
+            dist/*.txt
+          if-no-files-found: error
+
   deploy:
     needs: build
     runs-on: ubuntu-latest
@@ -48,3 +58,24 @@ jobs:
     steps:
       - name: Deploy to Pages
         uses: actions/deploy-pages@v4
+
+  # Tells IndexNow (Bing, Copilot and other engines) that the sitemap URLs changed.
+  # scripts/indexnow.mjs turns any failure into a warning, and continue-on-error keeps a
+  # broken step from marking the run failed: the site is already live at this point.
+  indexnow:
+    needs: deploy
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    continue-on-error: true
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download IndexNow inputs
+        uses: actions/download-artifact@v4
+        with:
+          name: indexnow-inputs
+          path: dist
+
+      - name: Submit URLs to IndexNow
+        run: node scripts/indexnow.mjs dist
