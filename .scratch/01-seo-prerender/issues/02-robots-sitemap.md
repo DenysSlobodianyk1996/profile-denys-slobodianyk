@@ -1,12 +1,12 @@
-# 02 — robots.txt + sitemap.xml
+# 02: robots.txt and sitemap.xml
 
-**Blocked by:** 01 (uses the canonical origin from `src/static/seo.ts`)
+**What to build:** The build emits `robots.txt` and `sitemap.xml` with absolute URLs for every route.
 
-## Tasks
-- In the same Vite plugin (`generateBundle` / `closeBundle`), emit:
-  - `robots.txt`: allow all, plus a `Sitemap:` line with the absolute sitemap URL;
-  - `sitemap.xml`: one `<url>` per `NAVIGATION_ITEMS` path, absolute and with a trailing slash as GitHub Pages serves it, plus a build-date `lastmod`.
-- Note: GitHub Pages serves the project at a sub-path, so Google reads robots.txt only at the domain root, which this site doesn't control. The sitemap still works when submitted through Search Console (ticket 05).
+**Blocked by:** 01 (uses the canonical origin from `src/static/seo.ts`).
 
-## Done when
-- `dist/robots.txt` and `dist/sitemap.xml` exist with the correct absolute URLs.
+**Status:** done (shipped in PR #5)
+
+- [x] `robots.txt` allows all and has a `Sitemap:` line with the absolute sitemap URL (live: 200)
+- [x] `sitemap.xml` has one `<url>` per route, absolute and with a trailing slash (live: 200)
+- [x] ~~Build-date `lastmod`~~: dropped on purpose in b1449e3, because a date that changes on every deploy teaches Google to ignore it
+- [x] Noted that GitHub Pages serves the site at a sub-path, so crawlers ignore this robots.txt and the sitemap must be submitted by hand (see ticket 05; confirmed in `02-geo/research.md`)

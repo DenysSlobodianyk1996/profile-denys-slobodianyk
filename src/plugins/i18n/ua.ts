@@ -10,7 +10,12 @@ export default {
   createdWith: 'Створено за допомогою',
   personalInfo: {
     title: 'Персональна інформація',
+    headline: 'Senior Angular розробник',
     positions: 'Позиції',
+  },
+  testimonials: {
+    title: 'Рекомендації',
+    readOnLinkedIn: 'Читати на LinkedIn',
   },
   skills: {
     title: 'Навички',

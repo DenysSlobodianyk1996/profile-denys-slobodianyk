@@ -1,4 +1,10 @@
 <template>
+  <v-sheet class="px-4 pt-4 flex flex-col gap-3">
+    <h1 class="text-2xl md:text-3xl font-bold leading-tight">{{ t('name') }}: {{ t('personalInfo.headline') }}</h1>
+
+    <p v-if="bio" class="max-w-4xl leading-relaxed">{{ bio }}</p>
+  </v-sheet>
+
   <v-sheet class="flex md:flex-row flex-col gap-4">
     <v-sheet class="self-start mt-4 px-4 flex flex-col gap-2 text-center">
       <v-img
@@ -28,6 +34,8 @@
       </div>
     </v-container>
   </v-sheet>
+
+  <TestimonialsSection v-if="testimonials?.items?.length" :testimonials="testimonials" />
 </template>
 
 <script setup lang="ts">
@@ -36,7 +44,7 @@
   import { useI18n } from 'vue-i18n'
   import { dataService } from '@/services'
   import { useDataStore } from '@/stores'
-  import PersonalInfoDetail from './components'
+  import PersonalInfoDetail, { TestimonialsSection } from './components'
 
   const baseUrl = import.meta.env.BASE_URL
   const { t } = useI18n()
@@ -46,6 +54,8 @@
 
   // Personal Info logic
   const { personalInfo } = storeToRefs(dataStore)
+  const bio = computed(() => personalInfo.value.bio)
+  const testimonials = computed(() => personalInfo.value.testimonials)
   const positionDetails = computed(() => personalInfo.value.positionDetails)
   const additionalDetails = computed(() => personalInfo.value.additionalDetails?.map(item => {
     if (item.title === 'Email') {

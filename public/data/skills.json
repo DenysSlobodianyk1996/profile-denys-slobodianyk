@@ -1,5 +1,6 @@
 {
   "angular": {
+    "description": "As the key frontend developer, Denys upgraded Angular from v9 to v21 on the Aifora forecasting system and from v8 to v16 on Skill Director, an assessment CRM he built from scratch. He is now moving the Krutch sales CRM from RxJS to Signals on Angular 19.",
     "version": "5 - 21",
     "yearsExperience": 8,
     "skills": [
@@ -18,6 +19,7 @@
     "additionalInfo": "Angular Major updates - Update for projects Angular 8 to 16; 9 to 21 with continuous support.\nMigration from Angular Material to PrimeNg components (replacement)."
   },
   "react": {
+    "description": "On Pododesk, a medical calendar app he supported for 2 years, Denys migrated the codebase from JSX to TSX and mentored other developers. On Agorate he built stepper forms with Formik and Chakra UI.",
     "version": "16 - 17",
     "yearsExperience": 2.5,
     "skills": [
@@ -33,6 +35,7 @@
     ]
   },
   "vue": {
+    "description": "No commercial Vue projects yet: Denys uses Vue 3 with Pinia, vue-router, vue-i18n and Vuetify on personal projects, including this site.",
     "version": "2 - 3",
     "yearsExperience": 1,
     "skills": [

@@ -38,6 +38,9 @@ export interface SeoPersonalInfoEntry {
   href?: string
 }
 export interface SeoPersonalInfoData {
+  dateModified?: string
+  bio?: string
+  positionDetails?: SeoPersonalInfoEntry[]
   additionalDetails: SeoPersonalInfoEntry[]
 }
 
@@ -55,9 +58,15 @@ export const SEO_JOB_TITLE = 'Senior Angular Developer'
 
 export const SEO_SITE_NAME = `${SEO_AUTHOR} — ${SEO_JOB_TITLE}`
 
-export const SEO_TITLE = `${SEO_SITE_NAME} | Frontend Engineer`
+export const SEO_TITLE = `${SEO_SITE_NAME} | Senior Frontend Developer`
 
 export const SEO_IMAGE_URL = `${SEO_CANONICAL_URL}data/foto.png`
+
+// Search Console / Bing Webmaster Tools ownership tokens: the content value of the
+// "HTML tag" verification method. Leave empty to omit the tag from the head.
+export const SEO_GOOGLE_SITE_VERIFICATION = 'jFybgwwGyr9yepRC53WaJmZYPZGWPFwLZD000UJpGIg'
+
+export const SEO_BING_SITE_VERIFICATION = ''
 
 export const SEO_PATHS: Record<SeoRouteId, string> = {
   'personal-info': '/',
@@ -67,10 +76,6 @@ export const SEO_PATHS: Record<SeoRouteId, string> = {
 
 // Other skills.json groups that are frameworks, with their display names.
 const SECONDARY_FRAMEWORKS: Record<string, string> = { react: 'React', vue: 'Vue.js' }
-
-function joinList (items: string[]): string {
-  return items.length > 1 ? `${items.slice(0, -1).join(', ')} and ${items.at(-1)}` : items.join('')
-}
 
 // "Based in Bila Tserkva, Kyiv region, Ukraine" → locality, region, country.
 function parseAddress (personalInfo: SeoPersonalInfoData): SeoAddressModel | null {
@@ -93,6 +98,13 @@ export function buildSeo (skills: SeoSkillsData, personalInfo: SeoPersonalInfoDa
   const frameworks = Object.keys(SECONDARY_FRAMEWORKS)
     .filter(key => skills[key])
     .map(key => SECONDARY_FRAMEWORKS[key]!)
+  // Positioning titles after the lead one (positionDetails[0], which SEO_JOB_TITLE names), in
+  // order: "Senior Frontend Developer", "Middle React Developer", ... They go into keywords
+  // only: in the descriptions they would push past the ~160 characters search results show.
+  const otherPositions = (personalInfo.positionDetails ?? [])
+    .slice(1)
+    .map(entry => entry.desciption ?? '')
+    .filter(Boolean)
   const address = parseAddress(personalInfo)
   const location = address ? `Open to remote work, based in ${address.country}.` : 'Open to remote work.'
 
@@ -103,18 +115,15 @@ export function buildSeo (skills: SeoSkillsData, personalInfo: SeoPersonalInfoDa
 
   const description = [
     `${SEO_JOB_TITLE}${experience ? ` with ${experience}` : ''}: ${['TypeScript', ...topSkills].join(', ')}.`,
-    frameworks.length > 0 ? `Also ${joinList(frameworks)}.` : '',
     location,
   ].filter(Boolean).join(' ')
 
   const keywords = [
-    'Angular developer',
-    'Senior Angular developer',
+    SEO_JOB_TITLE,
+    ...otherPositions,
     'Angular',
     'TypeScript',
     ...topSkills,
-    'Frontend engineer',
-    'Frontend developer',
     ...frameworks,
     'Remote',
     ...(address ? [address.country] : []),
@@ -132,17 +141,19 @@ export function buildSeo (skills: SeoSkillsData, personalInfo: SeoPersonalInfoDa
       },
       'skills': {
         path: SEO_PATHS.skills,
-        title: `Skills — ${['Angular', ...topSkills].join(', ')} | ${SEO_AUTHOR}`,
+        title: `Skills — ${SEO_JOB_TITLE}: ${['Angular', ...topSkills].join(', ')} | ${SEO_AUTHOR}`,
         description: [
-          `Angular${version ? ` ${version}` : ''} skills: ${moreSkills.join(', ')}.`,
-          frameworks.length > 0 ? `Plus ${joinList(frameworks)}.` : '',
-          `${SEO_JOB_TITLE}. ${location}`,
+          `${SEO_JOB_TITLE} skills${version ? ` (Angular ${version})` : ''}: ${moreSkills.join(', ')}.`,
+          location,
         ].filter(Boolean).join(' '),
       },
       'work-timeline': {
         path: SEO_PATHS['work-timeline'],
         title: `Work Timeline — ${SEO_JOB_TITLE} | ${SEO_AUTHOR}`,
-        description: `Work history of ${SEO_AUTHOR}, ${SEO_JOB_TITLE}${years ? `: ${years} years of Angular projects` : ''}, framework upgrades and team work. ${location}`,
+        description: [
+          `Work history of ${SEO_AUTHOR}, ${SEO_JOB_TITLE}${years ? `: ${years} years of Angular projects` : ''} and framework upgrades.`,
+          location,
+        ].filter(Boolean).join(' '),
       },
     },
   }

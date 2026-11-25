@@ -1,16 +1,22 @@
 {
+  "dateModified": "2026-11-25",
+  "bio": "Senior Angular developer with 8+ years of commercial frontend experience, working with every Angular version from 5 to 21. Led two production upgrades: Angular 9 → 21 on a retail forecasting platform, and 8 → 16 on an employee-assessment CRM he built from scratch. Currently moving a sales CRM from RxJS to Signals. Key frontend developer on long-running projects for US clients: mentoring, organising releases, estimates, and direct English communication with product owners and designers. Also works with React (middle level) and Vue (junior level). Remote, based in Kyiv region, Ukraine.",
   "positionDetails": [
     {
       "title": "Angular 5-21",
-      "desciption": "Senior Frontend Engineer"
+      "desciption": "Senior Angular Developer"
+    },
+    {
+      "title": "Frontend",
+      "desciption": "Senior Frontend Developer"
     },
     {
       "title": "React",
-      "desciption": "Middle Frontend Engineer"
+      "desciption": "Middle React Developer"
     },
     {
       "title": "Vue",
-      "desciption": "Junior Frontend Engineer"
+      "desciption": "Junior Vue Developer"
     }
   ],
   "additionalDetails": [
@@ -21,6 +27,10 @@
     {
       "title": "English",
       "desciption": "B2 Upper Intermediate"
+    },
+    {
+      "title": "Ukrainian",
+      "desciption": "Native"
     },
     {
       "title": "LinkedIn",
@@ -38,7 +48,7 @@
     },
     {
       "title": "Education",
-      "desciption": "Bachelor / Master degree with honors (5.0). \"Software Engineering\""
+      "desciption": "Vinnytsia National Technical University (VNTU), 2013–2019. \"Software Engineering\", Bachelor / Master degree with honors (5.0)"
     },
     {
       "title": "Private entrepreneur",
@@ -48,5 +58,33 @@
       "title": "Github",
       "href": "https://github.com/DenysSlobodianyk1996"
     }
-  ]
+  ],
+  "testimonials": {
+    "href": "https://www.linkedin.com/in/denys-slobodianyk-928202162/details/recommendations/",
+    "items": [
+      {
+        "name": "Oleksandr Baliev",
+        "role": "Senior Engineering Manager",
+        "company": "Centric Software",
+        "quote": "Denys is a highly professional frontend engineer who combines deep technical expertise with a strong sense of ownership. Beyond delivering high-quality code, he actively contributed to improving the team’s processes by asking the right questions and constructively challenging the way we work."
+      },
+      {
+        "name": "Pavlo Tyshchenko",
+        "role": "COO / Head of Operations",
+        "company": "The Frontend Company",
+        "quote": "Denys is a highly reliable senior frontend engineer who consistently delivers clean, high-quality work and takes strong ownership of his responsibilities. He communicates clearly, works well with both teammates and clients, and can be trusted to handle important parts of a project independently."
+      },
+      {
+        "name": "Anna Tymofieieva",
+        "role": "Software Engineer",
+        "company": "SoftServe",
+        "quote": "Despite being in different teams and companies, collaboration with him felt seamless and well-coordinated. He consistently delivered his work on time and maintained a strong sense of ownership over the UI components he was responsible for."
+      },
+      {
+        "name": "Victor Medeiros",
+        "role": "Frontend Tech Lead & Senior Consultant",
+        "quote": "Denys has strong technical skills and genuinely cares about code quality. Denys doesn't just close tickets but leaves the codebase better than it was."
+      }
+    ]
+  }
 }

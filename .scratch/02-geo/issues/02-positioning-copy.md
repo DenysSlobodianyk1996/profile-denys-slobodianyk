@@ -4,11 +4,11 @@
 
 **Blocked by:** None (can start immediately).
 
-**Status:** ready-for-agent
+**Status:** done
 
-- [ ] The home page's position list shows the four titles in positioning order
-- [ ] Route titles and descriptions lead with "Senior Angular Developer" and mention the React and Vue levels where relevant; no "Middle Angular"
-- [ ] The keyword list adds "Middle React developer" and "Junior Vue developer" without repeating near-duplicate terms (no keyword stuffing)
-- [ ] The JSON-LD `jobTitle` still reads "Senior Angular Developer"
-- [ ] `npm run build` passes; the prerendered HTML for all three routes carries the new titles and descriptions
-- [ ] `npm run lint` passes
+- [x] The home page's position list shows the four titles in positioning order
+- [x] Route titles and descriptions lead with "Senior Angular Developer" and mention the React and Vue levels where relevant; no "Middle Angular"
+- [x] The keyword list adds "Middle React developer" and "Junior Vue developer" without repeating near-duplicate terms (no keyword stuffing)
+- [x] The JSON-LD `jobTitle` still reads "Senior Angular Developer"
+- [x] `npm run build` passes; the prerendered HTML for all three routes carries the new titles and descriptions
+- [x] `npm run lint` passes

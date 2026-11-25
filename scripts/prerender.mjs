@@ -33,6 +33,22 @@ async function readRoutePaths () {
   return paths
 }
 
+const JSON_LD_PATTERN = /(<script type="application\/ld\+json"[^>]*>)([\s\S]*?)(<\/script>)/
+
+// build/seo-plugin.ts bakes the home page's ProfilePage JSON-LD into index.html, so every
+// page built from it starts with that block. Only the home page is the profile page: other
+// routes (and 404.html) keep just its Person, under the same @id.
+function toPersonJsonLd (html) {
+  return html.replace(JSON_LD_PATTERN, (block, open, json, close) => {
+    const data = JSON.parse(json)
+    if (data['@type'] !== 'ProfilePage') {
+      return block
+    }
+    const person = { '@context': data['@context'], ...data.mainEntity }
+    return `${open}${JSON.stringify(person, null, 2).replaceAll('<', String.raw`<`)}${close}`
+  })
+}
+
 // "/profile-denys-slobodianyk/skills/" -> "dist/skills/index.html"
 function outputFile (basePath, routePath) {
   const relative = routePath.slice(basePath.length).replace(/^\/+|\/+$/g, '')
@@ -127,7 +143,8 @@ async function main () {
         throw new Error(`Route ${routePath} is outside the base path ${basePath}`)
       }
       try {
-        pages.push({ file: outputFile(basePath, routePath), html: await renderRoute(browser, origin, routePath) })
+        const html = await renderRoute(browser, origin, routePath)
+        pages.push({ file: outputFile(basePath, routePath), html: routePath === basePath ? html : toPersonJsonLd(html) })
         console.log(`prerendered ${routePath}`)
       } catch (error) {
         throw new Error(`Failed to prerender ${routePath}:\n  ${error.message}`, { cause: error })
@@ -138,6 +155,10 @@ async function main () {
       await mkdir(dirname(file), { recursive: true })
       await writeFile(file, html)
     }
+
+    // 404.html is a copy of the SPA shell, made before prerender (see `npm run build`).
+    const notFoundFile = resolve(DIST_DIR, '404.html')
+    await writeFile(notFoundFile, toPersonJsonLd(await readFile(notFoundFile, 'utf8')))
   } finally {
     await browser.close()
     await server.close()

@@ -1,19 +1,16 @@
-# 01 — Static head + JSON-LD baked into index.html
+# 01: Static head and JSON-LD baked into index.html
 
-**Blocked by:** none
+**What to build:** `dist/index.html` carries full SEO markup without JavaScript, so crawlers and link previewers see it.
 
-## What
-Make `dist/index.html` carry full SEO markup without JavaScript.
+**Blocked by:** None.
 
-## Tasks
-- Create `src/static/seo.ts` as the single source for: the canonical origin, site title, Angular-first description, keywords, and per-route `{ title, description }` keyed by `NAVIGATION_ITEMS` id. Use type-only or relative imports so `vite.config.mts` can import it.
-- Add a Vite plugin (inline in `vite.config.mts`, or `build/seo-plugin.ts`) using `transformIndexHtml`. It should:
-  - read `public/data/personal-info.json` and `skills.json`;
-  - inject title, description, keywords, `<link rel="canonical">`, OG tags with `property=` (absolute `og:url`, absolute `og:image` → `/data/foto.png`), and a Twitter `summary` card;
-  - inject a JSON-LD `Person`: name, `jobTitle` "Senior Angular Developer", `knowsAbout` (all skills, deduped), `address` (Bila Tserkva, Ukraine), `email`, `sameAs` (LinkedIn, GitHub), `image`, `url`.
-- Fix the favicon href in `index.html` so it respects the base path.
-- Remove the hardcoded title, description and keywords from `src/App.vue`. Ticket 03 takes over the runtime head.
+**Status:** done (shipped in PR #5; facts moved to JSON in PR #6)
 
-## Done when
-- `npm run build` passes, and `dist/index.html` contains the tags above with absolute URLs.
-- The JSON-LD validates at https://validator.schema.org.
+- [x] `src/static/seo.ts` is the single source of SEO copy (canonical origin, title, description, keywords, per-route title and description), importable from the Vite config
+- [x] A Vite plugin (`build/seo-plugin.ts`) reads `personal-info.json` and `skills.json` and injects into the head: title, description, keywords and canonical
+- [x] The plugin injects Open Graph tags with `property=`, an absolute `og:url` and `og:image`, and a Twitter `summary` card (live: `og:url` is absolute)
+- [x] The plugin injects a JSON-LD `Person`: name, `jobTitle`, `knowsAbout`, `address`, `email`, `sameAs` (LinkedIn, GitHub), `image`, `url` (live: present)
+- [x] The favicon href respects the base path (live: `/profile-denys-slobodianyk/favicon.ico`)
+- [x] Hardcoded title, description and keywords removed from `App.vue`
+- [x] `npm run build` passes, and `dist/index.html` contains the tags with absolute URLs
+- [ ] JSON-LD validated at https://validator.schema.org (not recorded; ticket 05 of 02-geo re-checks it)

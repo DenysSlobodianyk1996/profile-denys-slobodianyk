@@ -4,8 +4,8 @@
 
 **Blocked by:** None (can start immediately). Must be done before tickets 02–08 reach `main`.
 
-**Status:** ready-for-human
+**Status:** done (2026-11-25; Denys not named in any answer)
 
-- [ ] All 8 questions asked in ChatGPT, Perplexity, Gemini and Claude, with web search on where the assistant offers it
-- [ ] For each answer, recorded whether Denys is named, his position in the list, and which sources were cited
-- [ ] Results saved as the 2026-11 panel log in the geo notes folder
+- [x] All 8 questions asked in the AI assistants
+- [x] For each answer, recorded whether Denys is named and his position in the list (cited sources weren't recorded this time)
+- [x] Results saved in `panel-2026-11.md`

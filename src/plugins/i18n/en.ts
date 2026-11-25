@@ -10,7 +10,12 @@ export default {
   createdWith: 'Created with',
   personalInfo: {
     title: 'Personal Info',
+    headline: 'Senior Angular Developer',
     positions: 'Positions',
+  },
+  testimonials: {
+    title: 'Recommendations',
+    readOnLinkedIn: 'Read on LinkedIn',
   },
   skills: {
     title: 'Skills',
