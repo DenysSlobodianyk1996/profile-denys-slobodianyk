@@ -1,17 +1,14 @@
-# 04 — Prerender routes with Playwright
+# 04: Prerender routes with Playwright
 
-**Blocked by:** 01, 03 (prerender captures the per-route head)
+**What to build:** Every route is served as real HTML with HTTP 200, so search engines index it instead of getting the SPA's 404 fallback.
 
-## Tasks
-- Add `playwright` as a devDependency.
-- Write `scripts/prerender.mjs`. It should:
-  - start `vite preview` on a free port;
-  - for each `NAVIGATION_ITEMS` path, open `<origin>/profile-denys-slobodianyk<path>`, wait for network idle and page content, and save `page.content()` to `dist/<path>/index.html` (root → `dist/index.html`);
-  - stop the server, and exit non-zero on any failure.
-- Update `npm run build`: build → prerender → `cp dist/index.html dist/404.html`. Copy the 404 fallback **before** prerendering overwrites `index.html` with Home content, or decide that a prerendered Home is fine as the 404 body.
-- `.github/workflows/deployment-pipeline.yml`: add `npx playwright install --with-deps chromium` before Build.
+**Blocked by:** 01, 03 (prerender captures the per-route head).
 
-## Done when
-- `dist/skills/index.html` and `dist/work-timeline/index.html` contain real page text and the per-route title.
-- `npm run preview` → hard refresh on `/skills` works, and the app becomes interactive.
-- After deploy: `curl -I .../profile-denys-slobodianyk/skills/` returns 200.
+**Status:** done (shipped in PR #5)
+
+- [x] `playwright` is a devDependency
+- [x] `scripts/prerender.mjs` starts `vite preview`, renders each route in Chromium, writes `dist/<route>/index.html`, and exits non-zero on failure
+- [x] `npm run build` copies `404.html` before prerendering, so the fallback stays the empty shell
+- [x] The deploy workflow installs Chromium before the build
+- [x] `dist/skills/index.html` and `dist/work-timeline/index.html` contain real page text and the per-route title
+- [x] After deploy, `/`, `/skills/` and `/work-timeline/` return 200, and an unknown path returns 404 (live check, 2026-11-25)
