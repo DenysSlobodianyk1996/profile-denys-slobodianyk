@@ -4,10 +4,10 @@
 
 **Blocked by:** None (can start immediately).
 
-**Status:** ready-for-agent
+**Status:** done
 
-- [ ] A key file (generated key, 8–128 hex characters) is served from the site sub-path after build
-- [ ] A post-deploy workflow step POSTs the URL list built from the same route list as the sitemap, with `host`, `key` and `keyLocation`
-- [ ] A failed IndexNow call logs a warning and doesn't fail the deploy
-- [ ] The workflow YAML is valid, and the step runs only on pushes to `main` after the deploy job succeeds
+- [x] A key file (generated key, 8–128 hex characters) is served from the site sub-path after build
+- [x] A post-deploy workflow step POSTs the URL list built from the same route list as the sitemap, with `host`, `key` and `keyLocation`
+- [x] A failed IndexNow call logs a warning and doesn't fail the deploy
+- [x] The workflow YAML is valid, and the step runs only on pushes to `main` after the deploy job succeeds
 - [ ] After the first deploy, the step's log shows HTTP 200 or 202 (check after merge)
