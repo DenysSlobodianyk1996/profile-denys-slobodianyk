@@ -11,4 +11,3 @@
 - [x] The JSON-LD `knowsAbout` list is unchanged (the build plugin reads the same JSON)
 - [x] `npm run build` passes, and the prerendered skills page HTML contains the text for the default (Angular) tab
 - [x] `npm run type-check` and `npm run lint` pass
-- [ ] Denys reviews the wording before merge
