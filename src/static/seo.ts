@@ -77,10 +77,6 @@ export const SEO_PATHS: Record<SeoRouteId, string> = {
 // Other skills.json groups that are frameworks, with their display names.
 const SECONDARY_FRAMEWORKS: Record<string, string> = { react: 'React', vue: 'Vue.js' }
 
-function joinList (items: string[]): string {
-  return items.length > 1 ? `${items.slice(0, -1).join(', ')} and ${items.at(-1)}` : items.join('')
-}
-
 // "Based in Bila Tserkva, Kyiv region, Ukraine" → locality, region, country.
 function parseAddress (personalInfo: SeoPersonalInfoData): SeoAddressModel | null {
   const based = personalInfo.additionalDetails
@@ -102,11 +98,13 @@ export function buildSeo (skills: SeoSkillsData, personalInfo: SeoPersonalInfoDa
   const frameworks = Object.keys(SECONDARY_FRAMEWORKS)
     .filter(key => skills[key])
     .map(key => SECONDARY_FRAMEWORKS[key]!)
-  // Positioning titles after the lead one, in order: "Senior Frontend Developer", "Middle React Developer", ...
+  // Positioning titles after the lead one (positionDetails[0], which SEO_JOB_TITLE names), in
+  // order: "Senior Frontend Developer", "Middle React Developer", ... They go into keywords
+  // only: in the descriptions they would push past the ~160 characters search results show.
   const otherPositions = (personalInfo.positionDetails ?? [])
+    .slice(1)
     .map(entry => entry.desciption ?? '')
-    .filter(title => title && title !== SEO_JOB_TITLE)
-  const alsoPositions = otherPositions.length > 0 ? `Also ${joinList(otherPositions)}.` : ''
+    .filter(Boolean)
   const address = parseAddress(personalInfo)
   const location = address ? `Open to remote work, based in ${address.country}.` : 'Open to remote work.'
 
@@ -117,7 +115,6 @@ export function buildSeo (skills: SeoSkillsData, personalInfo: SeoPersonalInfoDa
 
   const description = [
     `${SEO_JOB_TITLE}${experience ? ` with ${experience}` : ''}: ${['TypeScript', ...topSkills].join(', ')}.`,
-    alsoPositions,
     location,
   ].filter(Boolean).join(' ')
 
@@ -147,7 +144,6 @@ export function buildSeo (skills: SeoSkillsData, personalInfo: SeoPersonalInfoDa
         title: `Skills — ${SEO_JOB_TITLE}: ${['Angular', ...topSkills].join(', ')} | ${SEO_AUTHOR}`,
         description: [
           `${SEO_JOB_TITLE} skills${version ? ` (Angular ${version})` : ''}: ${moreSkills.join(', ')}.`,
-          alsoPositions,
           location,
         ].filter(Boolean).join(' '),
       },
@@ -155,8 +151,7 @@ export function buildSeo (skills: SeoSkillsData, personalInfo: SeoPersonalInfoDa
         path: SEO_PATHS['work-timeline'],
         title: `Work Timeline — ${SEO_JOB_TITLE} | ${SEO_AUTHOR}`,
         description: [
-          `Work history of ${SEO_AUTHOR}, ${SEO_JOB_TITLE}${years ? `: ${years} years of Angular projects` : ''}, framework upgrades and team work.`,
-          alsoPositions,
+          `Work history of ${SEO_AUTHOR}, ${SEO_JOB_TITLE}${years ? `: ${years} years of Angular projects` : ''} and framework upgrades.`,
           location,
         ].filter(Boolean).join(' '),
       },
