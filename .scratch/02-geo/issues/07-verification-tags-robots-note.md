@@ -4,9 +4,9 @@
 
 **Blocked by:** None (can start immediately).
 
-**Status:** ready-for-agent
+**Status:** done
 
-- [ ] With empty tokens, the built HTML has no verification tags
-- [ ] With a dummy token set locally, the built HTML contains the matching tag on the home page; revert before commit
-- [ ] The robots.txt output is unchanged; only the comment is added
-- [ ] `npm run build`, `npm run type-check` and `npm run lint` pass
+- [x] With empty tokens, the built HTML has no verification tags
+- [x] With a dummy token set locally, the built HTML contains the matching tag on the home page; revert before commit
+- [x] The robots.txt output is unchanged; only the comment is added
+- [x] `npm run build`, `npm run type-check` and `npm run lint` pass
