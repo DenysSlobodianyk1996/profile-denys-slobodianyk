@@ -4,11 +4,11 @@
 
 **Blocked by:** None (can start immediately).
 
-**Status:** ready-for-agent
+**Status:** done
 
-- [ ] The home page has exactly one `<h1>`, containing the name and "Senior Angular Developer"
-- [ ] The bio renders from the personal-info data; the page shows nothing broken if the field is missing
-- [ ] Any new UI string (e.g. a section label) has keys in both the English and Ukrainian locale files
-- [ ] The layout works on mobile and desktop, in light and dark themes
-- [ ] `npm run build` passes, and the prerendered home page HTML contains the heading and the full bio text
-- [ ] `npm run type-check` and `npm run lint` pass
+- [x] The home page has exactly one `<h1>`, containing the name and "Senior Angular Developer"
+- [x] The bio renders from the personal-info data; the page shows nothing broken if the field is missing
+- [x] Any new UI string (e.g. a section label) has keys in both the English and Ukrainian locale files
+- [x] The layout works on mobile and desktop, in light and dark themes
+- [x] `npm run build` passes, and the prerendered home page HTML contains the heading and the full bio text
+- [x] `npm run type-check` and `npm run lint` pass

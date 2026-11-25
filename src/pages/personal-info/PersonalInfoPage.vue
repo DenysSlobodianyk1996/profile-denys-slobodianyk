@@ -1,4 +1,10 @@
 <template>
+  <v-sheet class="px-4 pt-4 flex flex-col gap-3">
+    <h1 class="text-2xl md:text-3xl font-bold leading-tight">{{ t('name') }}: {{ t('personalInfo.headline') }}</h1>
+
+    <p v-if="bio" class="max-w-4xl leading-relaxed">{{ bio }}</p>
+  </v-sheet>
+
   <v-sheet class="flex md:flex-row flex-col gap-4">
     <v-sheet class="self-start mt-4 px-4 flex flex-col gap-2 text-center">
       <v-img
@@ -46,6 +52,7 @@
 
   // Personal Info logic
   const { personalInfo } = storeToRefs(dataStore)
+  const bio = computed(() => personalInfo.value.bio)
   const positionDetails = computed(() => personalInfo.value.positionDetails)
   const additionalDetails = computed(() => personalInfo.value.additionalDetails?.map(item => {
     if (item.title === 'Email') {
