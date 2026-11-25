@@ -13,6 +13,10 @@ export default {
     headline: 'Senior Angular Developer',
     positions: 'Positions',
   },
+  testimonials: {
+    title: 'Recommendations',
+    readOnLinkedIn: 'Read on LinkedIn',
+  },
   skills: {
     title: 'Skills',
   },

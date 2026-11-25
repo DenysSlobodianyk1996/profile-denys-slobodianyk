@@ -58,5 +58,33 @@
       "title": "Github",
       "href": "https://github.com/DenysSlobodianyk1996"
     }
-  ]
+  ],
+  "testimonials": {
+    "href": "https://www.linkedin.com/in/denys-slobodianyk-928202162/details/recommendations/",
+    "items": [
+      {
+        "name": "Oleksandr Baliev",
+        "role": "Senior Engineering Manager",
+        "company": "Centric Software",
+        "quote": "Denys is a highly professional frontend engineer who combines deep technical expertise with a strong sense of ownership. Beyond delivering high-quality code, he actively contributed to improving the team’s processes by asking the right questions and constructively challenging the way we work."
+      },
+      {
+        "name": "Pavlo Tyshchenko",
+        "role": "COO / Head of Operations",
+        "company": "The Frontend Company",
+        "quote": "Denys is a highly reliable senior frontend engineer who consistently delivers clean, high-quality work and takes strong ownership of his responsibilities. He communicates clearly, works well with both teammates and clients, and can be trusted to handle important parts of a project independently."
+      },
+      {
+        "name": "Anna Tymofieieva",
+        "role": "Software Engineer",
+        "company": "SoftServe",
+        "quote": "Despite being in different teams and companies, collaboration with him felt seamless and well-coordinated. He consistently delivered his work on time and maintained a strong sense of ownership over the UI components he was responsible for."
+      },
+      {
+        "name": "Victor Medeiros",
+        "role": "Frontend Tech Lead & Senior Consultant",
+        "quote": "Denys has strong technical skills and genuinely cares about code quality. Denys doesn't just close tickets but leaves the codebase better than it was."
+      }
+    ]
+  }
 }
