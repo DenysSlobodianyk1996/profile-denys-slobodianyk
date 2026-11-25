@@ -4,11 +4,11 @@
 
 **Blocked by:** None (can start immediately).
 
-**Status:** ready-for-agent
+**Status:** done
 
-- [ ] Each framework tab shows its description above the skill chips; tabs without one render as before
-- [ ] Descriptions match the seniority levels in the positioning (Angular senior, React middle, Vue junior) and only state facts found in the work timeline
-- [ ] The JSON-LD `knowsAbout` list is unchanged (the build plugin reads the same JSON)
-- [ ] `npm run build` passes, and the prerendered skills page HTML contains the text for the default (Angular) tab
-- [ ] `npm run type-check` and `npm run lint` pass
+- [x] Each framework tab shows its description above the skill chips; tabs without one render as before
+- [x] Descriptions match the seniority levels in the positioning (Angular senior, React middle, Vue junior) and only state facts found in the work timeline
+- [x] The JSON-LD `knowsAbout` list is unchanged (the build plugin reads the same JSON)
+- [x] `npm run build` passes, and the prerendered skills page HTML contains the text for the default (Angular) tab
+- [x] `npm run type-check` and `npm run lint` pass
 - [ ] Denys reviews the wording before merge

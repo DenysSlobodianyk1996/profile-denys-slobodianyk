@@ -1,4 +1,5 @@
 export interface SkillDetailModel {
+  description?: string
   version?: string
   yearsExperience?: number
   skills?: string[]
