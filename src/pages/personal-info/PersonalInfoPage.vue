@@ -34,6 +34,8 @@
       </div>
     </v-container>
   </v-sheet>
+
+  <TestimonialsSection v-if="testimonials?.items.length" :testimonials="testimonials" />
 </template>
 
 <script setup lang="ts">
@@ -42,7 +44,7 @@
   import { useI18n } from 'vue-i18n'
   import { dataService } from '@/services'
   import { useDataStore } from '@/stores'
-  import PersonalInfoDetail from './components'
+  import PersonalInfoDetail, { TestimonialsSection } from './components'
 
   const baseUrl = import.meta.env.BASE_URL
   const { t } = useI18n()
@@ -53,6 +55,7 @@
   // Personal Info logic
   const { personalInfo } = storeToRefs(dataStore)
   const bio = computed(() => personalInfo.value.bio)
+  const testimonials = computed(() => personalInfo.value.testimonials)
   const positionDetails = computed(() => personalInfo.value.positionDetails)
   const additionalDetails = computed(() => personalInfo.value.additionalDetails?.map(item => {
     if (item.title === 'Email') {
