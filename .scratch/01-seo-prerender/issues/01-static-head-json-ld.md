@@ -13,4 +13,4 @@
 - [x] The favicon href respects the base path (live: `/profile-denys-slobodianyk/favicon.ico`)
 - [x] Hardcoded title, description and keywords removed from `App.vue`
 - [x] `npm run build` passes, and `dist/index.html` contains the tags with absolute URLs
-- [ ] JSON-LD validated at https://validator.schema.org (not recorded; ticket 05 of 02-geo re-checks it)
+- [x] JSON-LD validated at https://validator.schema.org: 0 errors, 0 warnings (checked in `02-geo` ticket 05, 2026-11-25)

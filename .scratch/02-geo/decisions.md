@@ -24,13 +24,11 @@ Senior Angular Developer → Senior Frontend Developer → Middle React Develope
 Not doing: llms.txt, a custom domain, a `DenysSlobodianyk1996.github.io` root repo, a Wikidata item, an articles section.
 
 ## Off-site checklist (Denys)
-- [ ] Add the site to Google Search Console as a URL-prefix property on the sub-path. Verify with the meta tag, submit `sitemap.xml`, and request indexing of the 3 URLs.
-- [ ] Import the site into Bing Webmaster Tools and submit the sitemap there too.
-- [ ] Make the LinkedIn headline and About section match the positioning word for word.
-- [ ] Add a GitHub profile README that mirrors the bio and links to the site, and pin the best Angular repos.
-- [ ] Write a dev.to post on the Angular 9 → 21 migration, with numbers, linking back to the site.
-- [ ] Optionally tell the four recommenders that you quote them.
-- [ ] Longer term: talks and meetups, open-source credits, other independent mentions.
+
+Done 2026-11-25. Dropped by choice: Bing Webmaster Tools (IndexNow notifies Bing anyway), a dev.to post, messages to the recommenders, and talks.
+- [x] Add the site to Google Search Console as a URL-prefix property on the sub-path. Verify with the meta tag, submit `sitemap.xml`, and request indexing of the 3 URLs.
+- [x] Make the LinkedIn headline and About section match the positioning word for word.
+- [x] Add a GitHub profile README that mirrors the bio and links to the site.
 
 ## Prompt panel
 
