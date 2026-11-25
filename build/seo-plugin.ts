@@ -155,7 +155,8 @@ function buildRobots (): string {
 
 // Builds the SEO copy from public/data JSON once and uses it in three places:
 // - bakes the head (meta, Open Graph, Twitter card, JSON-LD ProfilePage) into index.html,
-//   so crawlers and link previewers that do not run JavaScript still see it;
+//   so crawlers and link previewers that do not run JavaScript still see it
+//   (scripts/prerender.mjs narrows the ProfilePage to its Person on every other page);
 // - serves it to the app as `virtual:seo` for the per-route runtime head;
 // - on build, emits robots.txt and sitemap.xml.
 export function seoPlugin (): Plugin {
