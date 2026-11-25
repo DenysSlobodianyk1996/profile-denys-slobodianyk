@@ -4,7 +4,9 @@ import { resolve } from 'node:path'
 import {
   buildSeo,
   SEO_AUTHOR,
+  SEO_BING_SITE_VERIFICATION,
   SEO_CANONICAL_URL,
+  SEO_GOOGLE_SITE_VERIFICATION,
   SEO_IMAGE_URL,
   SEO_JOB_TITLE,
   SEO_PATHS,
@@ -107,6 +109,10 @@ function buildSitemap (): string {
   ].join('\n')
 }
 
+// Has no effect while the site lives on a GitHub Pages sub-path: crawlers only read
+// robots.txt at the host root (denysslobodianyk1996.github.io/robots.txt), which returns
+// 404 there, and a 404 robots.txt means everything is allowed. Kept for a future root
+// or custom domain deployment.
 function buildRobots (): string {
   return ['User-agent: *', 'Allow: /', '', `Sitemap: ${SEO_CANONICAL_URL}sitemap.xml`, ''].join('\n')
 }
@@ -148,6 +154,8 @@ export function seoPlugin (): Plugin {
         meta('name', 'author', SEO_AUTHOR),
         meta('name', 'robots', 'index,follow'),
         { tag: 'link', attrs: { rel: 'canonical', href: SEO_CANONICAL_URL }, injectTo: 'head' },
+        ...(SEO_GOOGLE_SITE_VERIFICATION ? [meta('name', 'google-site-verification', SEO_GOOGLE_SITE_VERIFICATION)] : []),
+        ...(SEO_BING_SITE_VERIFICATION ? [meta('name', 'msvalidate.01', SEO_BING_SITE_VERIFICATION)] : []),
 
         meta('property', 'og:type', 'website'),
         meta('property', 'og:title', SEO_TITLE),
