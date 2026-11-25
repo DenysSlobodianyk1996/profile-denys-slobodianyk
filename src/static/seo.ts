@@ -38,6 +38,8 @@ export interface SeoPersonalInfoEntry {
   href?: string
 }
 export interface SeoPersonalInfoData {
+  dateModified?: string
+  bio?: string
   positionDetails?: SeoPersonalInfoEntry[]
   additionalDetails: SeoPersonalInfoEntry[]
 }

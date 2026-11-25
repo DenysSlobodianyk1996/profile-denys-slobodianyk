@@ -46,6 +46,19 @@ function loadSeoData (dataDir: string): SeoData {
   return { skills, personalInfo, seo: buildSeo(skills, personalInfo) }
 }
 
+// additionalDetails titles that name a language the person speaks, with BCP 47 codes.
+const LANGUAGES: Record<string, string> = { English: 'en', Ukrainian: 'uk' }
+const PERSON_ID = `${SEO_CANONICAL_URL}#person`
+
+// "Vinnytsia National Technical University (VNTU), 2013–2019. ..." → name and acronym.
+function buildAlumniOf (education: string | undefined): Record<string, unknown> | null {
+  const match = education?.match(/^([^(,.]+?)\s*\(([^)]+)\)/)
+  if (!match) {
+    return null
+  }
+  return { '@type': 'CollegeOrUniversity', 'name': match[1], 'alternateName': match[2] }
+}
+
 function buildPerson ({ skills, personalInfo, seo }: SeoData): Record<string, unknown> {
   const findEntry = (title: string) => personalInfo.additionalDetails.find(entry => entry.title === title)
 
@@ -60,14 +73,19 @@ function buildPerson ({ skills, personalInfo, seo }: SeoData): Record<string, un
     .map(title => findEntry(title)?.href)
     .filter((href): href is string => !!href)
   const email = findEntry('Email')?.desciption
+  const alumniOf = buildAlumniOf(findEntry('Education')?.desciption)
+  const knowsLanguage = personalInfo.additionalDetails
+    .filter(entry => LANGUAGES[entry.title])
+    .map(entry => ({ '@type': 'Language', 'name': entry.title, 'alternateName': LANGUAGES[entry.title] }))
 
   return {
-    '@context': 'https://schema.org',
     '@type': 'Person',
+    '@id': PERSON_ID,
     'name': SEO_AUTHOR,
     'jobTitle': SEO_JOB_TITLE,
     'url': SEO_CANONICAL_URL,
     'image': SEO_IMAGE_URL,
+    ...(personalInfo.bio ? { description: personalInfo.bio } : {}),
     ...(email ? { email } : {}),
     ...(seo.address
       ? {
@@ -79,8 +97,26 @@ function buildPerson ({ skills, personalInfo, seo }: SeoData): Record<string, un
           },
         }
       : {}),
+    ...(alumniOf ? { alumniOf } : {}),
+    ...(knowsLanguage.length > 0 ? { knowsLanguage } : {}),
     sameAs,
     knowsAbout,
+  }
+}
+
+// Google ProfilePage: the page is about one Person, every fact of which is visible on the
+// home page. dateModified comes from personal-info.json, edited by hand with the content,
+// never from the build time (same reasoning as the sitemap's missing <lastmod>).
+function buildProfilePage (data: SeoData): Record<string, unknown> {
+  const { dateModified } = data.personalInfo
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'ProfilePage',
+    '@id': SEO_CANONICAL_URL,
+    'url': SEO_CANONICAL_URL,
+    'name': SEO_TITLE,
+    ...(dateModified ? { dateModified } : {}),
+    'mainEntity': buildPerson(data),
   }
 }
 
@@ -118,7 +154,7 @@ function buildRobots (): string {
 }
 
 // Builds the SEO copy from public/data JSON once and uses it in three places:
-// - bakes the head (meta, Open Graph, Twitter card, JSON-LD Person) into index.html,
+// - bakes the head (meta, Open Graph, Twitter card, JSON-LD ProfilePage) into index.html,
 //   so crawlers and link previewers that do not run JavaScript still see it;
 // - serves it to the app as `virtual:seo` for the per-route runtime head;
 // - on build, emits robots.txt and sitemap.xml.
@@ -146,7 +182,7 @@ export function seoPlugin (): Plugin {
       const data = loadSeoData(dataDir)
       const { description, keywords } = data.seo
       // Escape "<" so the JSON can never close the <script> element early.
-      const jsonLd = JSON.stringify(buildPerson(data), null, 2).replaceAll('<', String.raw`\u003c`)
+      const jsonLd = JSON.stringify(buildProfilePage(data), null, 2).replaceAll('<', String.raw`\u003c`)
 
       const tags: HtmlTagDescriptor[] = [
         meta('name', 'description', description),
