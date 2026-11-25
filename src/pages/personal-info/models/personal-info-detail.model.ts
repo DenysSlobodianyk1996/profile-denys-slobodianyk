@@ -5,6 +5,7 @@ export interface PersonalInfoDetailModel {
 }
 
 export interface PersonalInfoModel {
+  bio?: string
   positionDetails: PersonalInfoDetailModel[]
   additionalDetails: PersonalInfoDetailModel[]
 }
