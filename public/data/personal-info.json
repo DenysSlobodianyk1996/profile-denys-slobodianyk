@@ -3,15 +3,19 @@
   "positionDetails": [
     {
       "title": "Angular 5-21",
-      "desciption": "Senior Frontend Engineer"
+      "desciption": "Senior Angular Developer"
+    },
+    {
+      "title": "Frontend",
+      "desciption": "Senior Frontend Developer"
     },
     {
       "title": "React",
-      "desciption": "Middle Frontend Engineer"
+      "desciption": "Middle React Developer"
     },
     {
       "title": "Vue",
-      "desciption": "Junior Frontend Engineer"
+      "desciption": "Junior Vue Developer"
     }
   ],
   "additionalDetails": [
