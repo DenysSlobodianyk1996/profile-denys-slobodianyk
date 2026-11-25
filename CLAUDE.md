@@ -88,4 +88,5 @@ Most changes to this repo are content updates, and they usually need no componen
 - `personal-info.json` entries use the property name `desciption` (spelled that way in the model and the data); a new entry must match it.
 - The CV is `public/data/CV_Denys_S_Angular_React_Vue.pdf`. Its filename is hardcoded in `src/layout/header/DownloadCVAction.vue`, so replace the file under the same name or update that path.
 - SEO text follows the JSON: years, Angular version, the first Angular skills in `skills.json` (their order matters), and the "Based in …" location in `personal-info.json` feed titles, descriptions, keywords and JSON-LD. Only the positioning wording (name, "Senior Angular Developer") is in `src/static/seo.ts`.
+- Whenever the content of `personal-info.json` or `skills.json` changes, set `dateModified` at the top of `personal-info.json` to today's date (`YYYY-MM-DD`). It becomes the ProfilePage `dateModified` in the JSON-LD and is edited by hand on purpose: CI checks out with depth 1, so git history cannot supply it.
 - Any new UI string needs a key in both `src/plugins/i18n/en.ts` and `src/plugins/i18n/ua.ts`.
