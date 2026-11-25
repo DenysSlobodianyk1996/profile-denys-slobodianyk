@@ -64,7 +64,7 @@ export const SEO_IMAGE_URL = `${SEO_CANONICAL_URL}data/foto.png`
 
 // Search Console / Bing Webmaster Tools ownership tokens: the content value of the
 // "HTML tag" verification method. Leave empty to omit the tag from the head.
-export const SEO_GOOGLE_SITE_VERIFICATION = ''
+export const SEO_GOOGLE_SITE_VERIFICATION = 'jFybgwwGyr9yepRC53WaJmZYPZGWPFwLZD000UJpGIg'
 
 export const SEO_BING_SITE_VERIFICATION = ''
 
