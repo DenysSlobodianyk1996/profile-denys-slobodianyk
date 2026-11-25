@@ -35,7 +35,7 @@
     </v-container>
   </v-sheet>
 
-  <TestimonialsSection v-if="testimonials?.items.length" :testimonials="testimonials" />
+  <TestimonialsSection v-if="testimonials?.items?.length" :testimonials="testimonials" />
 </template>
 
 <script setup lang="ts">
